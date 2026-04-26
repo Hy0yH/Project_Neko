@@ -1,13 +1,14 @@
 ﻿using Unity.VisualScripting;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
 
-    public float maxMoveSpeed = 10f; // 최고 이동 속도
-    public float acceleration = 60f; // 도달할 때까지의 가속도
-    public float deceleration = 60f; // 키를 놓았을 때의 감속도
+    public float maxMoveSpeed = 5f; // 최고 이동 속도
+    public float acceleration = 30f; // 도달할 때까지의 가속도
+    public float deceleration = 30f; // 키를 놓았을 때의 감속도
 
     [Header("Input")]
     // Input System에서 설정한 액션 연결
@@ -15,6 +16,9 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private float moveInputX;
+
+    // 캐릭터가 오른쪽을 보고 있는지
+    private bool isFacingRight = true;
 
     private void Awake()
     {
@@ -43,6 +47,15 @@ public class PlayerController : MonoBehaviour
         {
             moveInputX = moveAction.action.ReadValue<Vector2>().x;
         }
+
+        // 이동 방향과 현재 바라보는 방향을 비교해서 뒤집기 판단
+        if (moveInputX > 0 && !isFacingRight)
+        {
+            Flip();
+        } else if (moveInputX < 0 && isFacingRight)
+        {
+            Flip();
+        }
     }
 
     private void FixedUpdate()
@@ -67,5 +80,16 @@ public class PlayerController : MonoBehaviour
 
         // Unity 6 방식: 벡터를 새로 할당하지 않고 X축의 linearVelocityX만 직접 덮어씌움
         rb.linearVelocityX = newVelocityX;
+    }
+
+    private void Flip()
+    {
+        // 상태를 반대로 바꾼다
+        isFacingRight = !isFacingRight;
+
+        // Transform의 localSacle의 X값을 -1로 곱해서 뒤집는다
+        Vector3 currentScale = transform.localScale;
+        currentScale.x *= -1;
+        transform.localScale = currentScale;
     }
 }
