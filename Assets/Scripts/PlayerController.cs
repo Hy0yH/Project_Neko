@@ -8,14 +8,23 @@ public class PlayerController : MonoBehaviour
     public float maxMoveSpeed = 5f; // 최고 이동 속도
     public float acceleration = 30f; // 도달할 때까지의 가속도
     public float deceleration = 30f; // 키를 놓았을 때의 감속도
+    public float maxJumpForce = 5f; // 최대 점프 힘
 
     [Header("Input")]
     public InputActionReference moveAction; // Input System에서 설정한 액션 연결
+    public InputActionReference jumpAction;
+
+    [Header("Environment")]
+    public Transform groundCheck; // 발 밑 오브젝트
+    public float groundCheckRadius = 0.2f; // 땅 체크 반경
+    public LayerMask groundLayer; // 땅 레이어
 
     // 다른 상태 클래스에서 접근해야 하므로 public & [HideInInspector]로 선언
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Animator anim;
     [HideInInspector] public float moveInputX;
+    [HideInInspector] public bool isGrounded;
+    [HideInInspector] public bool jumpInputTriggered;
 
     // 캐릭터가 오른쪽을 보고 있는지
     private bool isFacingRight = true;
@@ -24,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private PlayerState currentState;
     public IdleState idleState;
     public WalkState walkState;
+    public JumpState jumpState;
 
     private void Awake()
     {
@@ -37,6 +47,7 @@ public class PlayerController : MonoBehaviour
         // FSM 상태 인스턴스 생성
         idleState = new IdleState(this);
         walkState = new WalkState(this);
+        jumpState = new JumpState(this);
     }
 
     private void OnEnable()
@@ -57,8 +68,16 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // 입력 시스템(폴링 방식)
-        // 이동은 연속적인 입력이므로 Update에서 처리
+        // 바닥 판정
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer) != null;
+
+        // 점프 입력 감지
+        if(jumpAction != null)
+        {
+            jumpInputTriggered = jumpAction.action.WasPressedThisFrame();
+        }
+
+        // 이동 입력 감지
         if (moveAction != null)
         {
             moveInputX = moveAction.action.ReadValue<Vector2>().x;
@@ -96,7 +115,7 @@ public class PlayerController : MonoBehaviour
 
     private void Flip()
     {
-        // 상태를 반대로 바꾼다
+        // 보고있는 방향 반전
         isFacingRight = !isFacingRight;
 
         // Transform의 localSacle의 X값을 -1로 곱해서 뒤집는다
