@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.XR;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,8 +15,13 @@ public class PlayerController : MonoBehaviour
 
     [Header("Environment")]
     public Transform groundCheck; // 발 밑 오브젝트
-    public float groundCheckRadius = 0.2f; // 땅 체크 반경
+    [HideInInspector] public float groundCheckRadius = 0.2f; // 땅 체크 반경
     public LayerMask groundLayer; // 땅 레이어
+    public Transform wallCheck; // 벽 체크용 오브젝트
+    [HideInInspector] public float wallCheckRadius = 0.2f; // 벽 체크 반경
+    public LayerMask wallLayer; // 벽 레이어
+
+    public float wallSlideSpeed = 2f; // 벽 타는 속도
 
     // 다른 상태 클래스에서 접근해야 하므로 public & [HideInInspector]로 선언
     [HideInInspector] public Rigidbody2D rb;
@@ -25,6 +29,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public float moveInputX;
     [HideInInspector] public bool isGrounded;
     [HideInInspector] public bool jumpInputTriggered;
+    [HideInInspector] public bool isTouchingWall;
+    [HideInInspector] public int facingDirection = 1; // 1은 오른쪽, -1은 왼쪽을 보고 있는 상태
 
     // 캐릭터가 오른쪽을 보고 있는지
     private bool isFacingRight = true;
@@ -34,6 +40,7 @@ public class PlayerController : MonoBehaviour
     public IdleState idleState;
     public WalkState walkState;
     public JumpState jumpState;
+    public WallSlideState wallSlideState;
 
     private void Awake()
     {
@@ -48,6 +55,7 @@ public class PlayerController : MonoBehaviour
         idleState = new IdleState(this);
         walkState = new WalkState(this);
         jumpState = new JumpState(this);
+        wallSlideState = new WallSlideState(this);
     }
 
     private void OnEnable()
@@ -72,7 +80,7 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer) != null;
 
         // 점프 입력 감지
-        if(jumpAction != null)
+        if (jumpAction != null)
         {
             jumpInputTriggered = jumpAction.action.WasPressedThisFrame();
         }
