@@ -79,6 +79,9 @@ public class PlayerController : MonoBehaviour
         // 바닥 판정
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer) != null;
 
+        // 벽 닿아있는지 판정
+        isTouchingWall = Physics2D.OverlapCircle(wallCheck.position, wallCheckRadius, wallLayer) != null;
+
         // 점프 입력 감지
         if (jumpAction != null)
         {

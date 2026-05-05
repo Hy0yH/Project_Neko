@@ -6,8 +6,8 @@ public class WallSlideState : PlayerState
 
     public override void Update()
     {
-        // 바닥에 닿으면 대기 상태로 전환
-        if (player.isGrounded)
+        // 바닥에 닿아 있고 위로 상승하는 중이 아니면 대기 상태로 전환
+        if (player.isGrounded && player.rb.linearVelocityY <= 0f)
         {
             player.ChangeState(player.idleState);
             return;
@@ -24,5 +24,9 @@ public class WallSlideState : PlayerState
     {
         // 하강 속도가 wallSlideSpeed를 넘지 못하도록 고정
         player.rb.linearVelocityY = Mathf.Clamp(player.rb.linearVelocityY, -player.wallSlideSpeed, float.MaxValue);
+
+
+        // wallSlideState 테스트용 코드
+        //player.rb.linearVelocityY = 5f;
     }
 }
