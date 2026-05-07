@@ -7,7 +7,9 @@ public class PlayerController : MonoBehaviour
     public float maxMoveSpeed = 5f; // 최고 이동 속도
     public float acceleration = 30f; // 도달할 때까지의 가속도
     public float deceleration = 30f; // 키를 놓았을 때의 감속도
-    public float maxJumpForce = 5f; // 최대 점프 힘
+    public float maxJumpForce = 3f; // 최대 점프 힘
+    public Vector2 wallJumpForce = new Vector2(2f, 3f); // 벽 점프 시 가해지는 힘 (X, Y)
+    public float wallJumpInputLockTime = 0.3f; // 벽 점프 후 입력 잠금 시간
 
     [Header("Input")]
     public InputActionReference moveAction; // Input System에서 설정한 액션 연결
@@ -32,15 +34,13 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool isTouchingWall;
     [HideInInspector] public int facingDirection = 1; // 1은 오른쪽, -1은 왼쪽을 보고 있는 상태
 
-    // 캐릭터가 오른쪽을 보고 있는지
-    private bool isFacingRight = true;
-
     // --- FSM 구조 ---
     private PlayerState currentState;
     public IdleState idleState;
     public WalkState walkState;
     public JumpState jumpState;
     public WallSlideState wallSlideState;
+    public WallJumpState wallJumpState;
 
     private void Awake()
     {
@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
         walkState = new WalkState(this);
         jumpState = new JumpState(this);
         wallSlideState = new WallSlideState(this);
+        wallJumpState = new WallJumpState(this);
     }
 
     private void OnEnable()
@@ -120,14 +121,14 @@ public class PlayerController : MonoBehaviour
 
     private void HandleFlip()
     {
-        if (moveInputX > 0 && !isFacingRight) Flip();
-        else if (moveInputX < 0 && isFacingRight) Flip();
+        if (moveInputX > 0 && facingDirection == -1) Flip();
+        else if (moveInputX < 0 && facingDirection == 1) Flip();
     }
 
-    private void Flip()
+    public void Flip()
     {
         // 보고있는 방향 반전
-        isFacingRight = !isFacingRight;
+        facingDirection *= -1;
 
         // Transform의 localSacle의 X값을 -1로 곱해서 뒤집는다
         Vector3 currentScale = transform.localScale;

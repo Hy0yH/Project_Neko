@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class JumpState : PlayerState
 {
@@ -13,7 +12,9 @@ public class JumpState : PlayerState
         // 점프 애니메이션 시작하고 최대 점프 속도로 설정
         if (player.anim != null) player.anim.SetBool("isJumping", true);
 
-        player.rb.linearVelocityY = player.maxJumpForce;
+        // 땅에 있을 때만(벽점프시 성립 x)
+        if (player.isGrounded)
+            player.rb.linearVelocityY = player.maxJumpForce;
     }
     public override void Update()
     {

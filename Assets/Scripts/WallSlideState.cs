@@ -6,6 +6,13 @@ public class WallSlideState : PlayerState
 
     public override void Update()
     {
+        // 점프 입력이 감지되면 wallJumpState로 전환
+        if (player.jumpInputTriggered)
+        {
+            player.ChangeState(player.wallJumpState);
+            return;
+        }
+
         // 바닥에 닿아 있고 위로 상승하는 중이 아니면 대기 상태로 전환
         if (player.isGrounded && player.rb.linearVelocityY <= 0f)
         {
