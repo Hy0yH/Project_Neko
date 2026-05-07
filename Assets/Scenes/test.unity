@@ -572,7 +572,9 @@ MonoBehaviour:
   maxMoveSpeed: 5
   acceleration: 30
   deceleration: 30
-  maxJumpForce: 5
+  maxJumpForce: 3
+  wallJumpForce: {x: 2, y: 3}
+  wallJumpInputLockTime: 0.3
   moveAction: {fileID: 1812239802568077228, guid: 1fd6d7089a041254aa9e192c8ef7ccb4, type: 3}
   jumpAction: {fileID: 4805157665521473676, guid: 1fd6d7089a041254aa9e192c8ef7ccb4, type: 3}
   groundCheck: {fileID: 21291602}
