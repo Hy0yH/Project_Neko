@@ -12,12 +12,22 @@ public class Enemy : MonoBehaviour
     private IEnemyState currentState; //상태 머신 관리를 위한 내부 변수
 
     [HideInInspector] public float lastAttackTime; //개인 공격 시간
+
+    private IEnemyState idleState;
+    //private IEnemyState chaseState;
+    //private IEnemyState patrolState;
+    //private IEnemyState attackState;
     
     private Rigidbody2D rigid;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+
+        idleState = new EnemyIdleState(this);
+        //chaseState = new EnemyIdleState(this);
+        //patrolState = new EnemyIdleState(this);
+        //attackState = new EnemyIdleState(this);
     }
     
     //상태를 변경해주는 함수
