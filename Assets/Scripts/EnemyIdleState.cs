@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyIdleState : IEnemystate
+public class EnemyIdleState : IEnemyState
 {
     private Enemy enemy;
     private float timer; //스톱워치(얼마나 대기하는지를 측정)
@@ -27,7 +27,7 @@ public class EnemyIdleState : IEnemystate
         timer += Time.deltaTime;
         if (timer >= idleTime)
         {
-            enemy.ChangeState(enemy.patrolState);
+            //enemy.ChangeState(enemy.patrolState);
         }
 
     }
