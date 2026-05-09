@@ -573,8 +573,8 @@ MonoBehaviour:
   maxMoveSpeed: 5
   acceleration: 30
   deceleration: 30
-  maxJumpForce: 3
-  wallJumpForce: {x: 2, y: 3}
+  maxJumpForce: 5
+  wallJumpForce: {x: 2, y: 5}
   wallJumpInputLockTime: 0.3
   moveAction: {fileID: 1812239802568077228, guid: 1fd6d7089a041254aa9e192c8ef7ccb4, type: 3}
   jumpAction: {fileID: 4805157665521473676, guid: 1fd6d7089a041254aa9e192c8ef7ccb4, type: 3}
@@ -595,6 +595,7 @@ MonoBehaviour:
   isGrounded: 0
   jumpInputTriggered: 0
   isTouchingWall: 0
+  isWallJumping: 0
   facingDirection: 1
 --- !u!95 &1859897193
 Animator:

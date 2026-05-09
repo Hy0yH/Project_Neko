@@ -32,13 +32,17 @@ public class JumpState : PlayerState
         }
 
         // 공중에서 좌우 이동 허용
-        float targetVelocityX = player.moveInputX * player.maxMoveSpeed;
-        player.rb.linearVelocityX = Mathf.MoveTowards(
-            player.rb.linearVelocityX, targetVelocityX, player.acceleration * Time.deltaTime);
+        if (!player.isWallJumping)
+        {
+            float targetVelocityX = player.moveInputX * player.maxMoveSpeed;
+            player.rb.linearVelocityX = Mathf.MoveTowards(
+                player.rb.linearVelocityX, targetVelocityX, player.acceleration * Time.deltaTime);
+        }
 
         // 땅에 닿으면 대기/걷기 상태로 전환
         if (player.isGrounded && player.rb.linearVelocityY <= 0f)
         {
+            player.isWallJumping = false; // 벽 점프 상태 해제
             if (Mathf.Abs(player.moveInputX) > 0.01f) player.ChangeState(player.walkState);
             else player.ChangeState(player.idleState);
         }

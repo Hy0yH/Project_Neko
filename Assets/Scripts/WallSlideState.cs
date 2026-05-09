@@ -16,6 +16,7 @@ public class WallSlideState : PlayerState
         // 바닥에 닿아 있고 위로 상승하는 중이 아니면 대기 상태로 전환
         if (player.isGrounded && player.rb.linearVelocityY <= 0f)
         {
+            player.isWallJumping = false; // 벽 점프 상태 해제
             player.ChangeState(player.idleState);
             return;
         }

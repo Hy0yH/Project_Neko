@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool isGrounded;
     [HideInInspector] public bool jumpInputTriggered;
     [HideInInspector] public bool isTouchingWall;
+    [HideInInspector] public bool isWallJumping;
     [HideInInspector] public int facingDirection = 1; // 1은 오른쪽, -1은 왼쪽을 보고 있는 상태
 
     // --- FSM 구조 ---
@@ -57,6 +58,8 @@ public class PlayerController : MonoBehaviour
         jumpState = new JumpState(this);
         wallSlideState = new WallSlideState(this);
         wallJumpState = new WallJumpState(this);
+
+        isWallJumping = false;
     }
 
     private void OnEnable()
@@ -96,7 +99,8 @@ public class PlayerController : MonoBehaviour
         }
 
         // 이동 방향과 현재 바라보는 방향을 비교해서 뒤집기 판단
-        HandleFlip();
+        if(!isWallJumping)
+            HandleFlip();
 
         // 현재 상태의 Update 실행
         currentState?.Update();
