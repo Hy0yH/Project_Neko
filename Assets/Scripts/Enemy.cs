@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public EnemyAttackSO attackSO;
     public EnemyMovementSO movementSO;
     public Transform playerTarget;
+    public float detectionRange; //플레이어를 감지할 범위
 
     private IEnemyState currentState; //상태 머신 관리를 위한 내부 변수
 
@@ -25,9 +26,9 @@ public class Enemy : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
 
         idleState = new EnemyIdleState(this);
-        //chaseState = new EnemyIdleState(this);
-        //patrolState = new EnemyIdleState(this);
-        //attackState = new EnemyIdleState(this);
+        //chaseState = new EnemyChaseState(this);
+        //patrolState = new EnemyPatrolState(this);
+        //attackState = new EnemyAttackState(this);
     }
     
     //상태를 변경해주는 함수
