@@ -20,6 +20,14 @@ public class EnemyPatrolState : IEnemyState
         
     }
 
+    public void FixedUpdateState()
+    {
+        if(enemy.movementSO != null)
+        {
+            enemy.movementSO.ExcuteMove(enemy);
+        }
+    }
+
     public void ExitState()
     {
         

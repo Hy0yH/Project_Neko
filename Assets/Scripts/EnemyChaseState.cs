@@ -19,6 +19,11 @@ public class EnemyChaseState : IEnemyState
         
     }
 
+    public void FixedUpdateState()
+    {
+        
+    }
+
     public void ExitState()
     {
         
