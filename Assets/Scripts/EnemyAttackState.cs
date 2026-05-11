@@ -19,6 +19,11 @@ public class EnemyAttackState : IEnemyState
         
     }
 
+    public void FixedUpdateState()
+    {
+        
+    }
+
     public void ExitState()
     {
         

@@ -669,10 +669,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   health: 0
   attackSO: {fileID: 0}
-  movementSO: {fileID: 0}
+  movementSO: {fileID: 11400000, guid: fc4da9c3657ddfc4690cee647eae0e18, type: 2}
   playerTarget: {fileID: 944223721}
   detectionRange: 0
   lastAttackTime: 0
+  rigid: {fileID: 0}
 --- !u!1 &1859897189
 GameObject:
   m_ObjectHideFlags: 0

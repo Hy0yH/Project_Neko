@@ -19,7 +19,13 @@ public class Enemy : MonoBehaviour
     //private IEnemyState patrolState;
     //private IEnemyState attackState;
     
-    private Rigidbody2D rigid;
+    [HideInInspector]public Rigidbody2D rigid;
+
+    private void Start()
+    {
+        //ChangeState(EnemyIdleState);
+    }
+
 
     private void Awake()
     {
@@ -49,6 +55,15 @@ public class Enemy : MonoBehaviour
         if (currentState != null)
         {
             currentState.UpdateState();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (currentState != null)
+        {
+            //물리 엔진을 이용한 이동 로직은 여기에서 처리한다.
+            currentState.FixedUpdateState();
         }
     }
 }

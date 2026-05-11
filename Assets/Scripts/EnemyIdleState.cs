@@ -43,6 +43,11 @@ public class EnemyIdleState : IEnemyState
 
     }
 
+    public void FixedUpdateState()
+    {
+        
+    }
+
     public void ExitState()
     {
 
