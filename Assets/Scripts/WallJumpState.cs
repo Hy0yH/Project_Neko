@@ -1,5 +1,4 @@
-﻿using UnityEditor.Tilemaps;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WallJumpState : PlayerState
 {
@@ -9,8 +8,6 @@ public class WallJumpState : PlayerState
     public override void Enter()
     {
         player.isWallJumping = true;
-        // 다중 점프 막기
-        player.jumpInputTriggered = false;
 
         // 타이머 시작
         lockTimer = player.wallJumpInputLockTime;

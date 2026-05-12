@@ -13,7 +13,7 @@ public class IdleState : PlayerState
     public override void Update()
     {
         // 점프 입력이 감지되고 땅에 닿아있다면 점프 상태로 전환
-        if (player.jumpInputTriggered && player.isGrounded)
+        if (player.isGrounded && player.ConsumeJump())
         {
             player.ChangeState(player.jumpState);
             return;

@@ -13,7 +13,7 @@ public class WalkState : PlayerState
     public override void Update()
     {
         // 점프 입력이 감지되고 땅에 닿아있다면 점프 상태로 전환
-        if (player.jumpInputTriggered && player.isGrounded)
+        if (player.isGrounded && player.ConsumeJump())
         {
             player.ChangeState(player.jumpState);
             return;
@@ -30,6 +30,6 @@ public class WalkState : PlayerState
         // linearVelocityX를 목표 속도로 점진적으로 이동
         float targetVelocityX = player.moveInputX * player.maxMoveSpeed;
         player.rb.linearVelocityX = Mathf.MoveTowards(
-            player.rb.linearVelocityX, targetVelocityX, player.acceleration * Time.deltaTime);
+            player.rb.linearVelocityX, targetVelocityX, player.acceleration * Time.fixedDeltaTime);
     }
 }

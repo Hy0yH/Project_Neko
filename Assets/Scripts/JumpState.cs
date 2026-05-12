@@ -24,9 +24,20 @@ public class JumpState : PlayerState
             player.ChangeState(player.wallSlideState);
             return;
         }
+
+        // 땅에 닿으면 대기/걷기 상태로 전환
+        if (player.isGrounded && player.rb.linearVelocityY <= 0f)
+        {
+            player.isWallJumping = false; // 벽 점프 상태 해제
+            if (Mathf.Abs(player.moveInputX) > 0.01f) player.ChangeState(player.walkState);
+            else player.ChangeState(player.idleState);
+        }
+    }
+    public override void FixedUpdate()
+    {
         // 가변 점프 구현
         // 캐릭터가 상승중인데 (linearVelocityY > 0) 점프 버튼이 떼어지면(!isPressed)
-        if (player.rb.linearVelocityY > 0 && !player.jumpAction.action.IsPressed())
+        if (player.rb.linearVelocityY > 0 && !player.jumpHeld)
         {
             player.rb.linearVelocityY *= jumpCutMultiplier; // 상승 속도를 깎아 낮은 점프를 만듦
         }
@@ -36,15 +47,7 @@ public class JumpState : PlayerState
         {
             float targetVelocityX = player.moveInputX * player.maxMoveSpeed;
             player.rb.linearVelocityX = Mathf.MoveTowards(
-                player.rb.linearVelocityX, targetVelocityX, player.acceleration * Time.deltaTime);
-        }
-
-        // 땅에 닿으면 대기/걷기 상태로 전환
-        if (player.isGrounded && player.rb.linearVelocityY <= 0f)
-        {
-            player.isWallJumping = false; // 벽 점프 상태 해제
-            if (Mathf.Abs(player.moveInputX) > 0.01f) player.ChangeState(player.walkState);
-            else player.ChangeState(player.idleState);
+                player.rb.linearVelocityX, targetVelocityX, player.acceleration * Time.fixedDeltaTime);
         }
     }
     public override void Exit()
