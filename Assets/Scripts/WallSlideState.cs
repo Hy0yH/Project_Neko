@@ -7,7 +7,7 @@ public class WallSlideState : PlayerState
     public override void Update()
     {
         // 점프 입력이 감지되면 wallJumpState로 전환
-        if (player.jumpInputTriggered)
+        if (player.ConsumeJump())
         {
             player.ChangeState(player.wallJumpState);
             return;
@@ -32,9 +32,5 @@ public class WallSlideState : PlayerState
     {
         // 하강 속도가 wallSlideSpeed를 넘지 못하도록 고정
         player.rb.linearVelocityY = Mathf.Clamp(player.rb.linearVelocityY, -player.wallSlideSpeed, float.MaxValue);
-
-
-        // wallSlideState 테스트용 코드
-        //player.rb.linearVelocityY = 5f;
     }
 }

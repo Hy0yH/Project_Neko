@@ -5,10 +5,10 @@ public class PlayerHealth : MonoBehaviour
 {
 
     // 플레이어의 최대 체력
-    private int maxHealth = 5;
+    [SerializeField] private int maxHealth = 5;
 
     // 피격 시 무적
-    private float invincibilityDuration = 1.0f; // 1초 동안 무적
+    private float invincibilityDuration = 1.5f; // 1.5초 동안 무적
     private float invincibilityTimer = 0f; // 무적 타이머
 
     // 플레이어의 현재 체력 (get은 외부에서 읽을 수 있지만, set은 private으로 설정하여 외부에서 직접 변경할 수 없도록 함)
@@ -52,7 +52,7 @@ public class PlayerHealth : MonoBehaviour
         if (invincibilityTimer > 0f) invincibilityTimer -= Time.deltaTime;
 
         // 키보드의 H 키를 누르면 1의 피해를 입음
-        if (Keyboard.current != null && Keyboard.current.hKey.isPressed)
+        if (Keyboard.current != null && Keyboard.current.hKey.wasPressedThisFrame)
         {
             TakeDamage(1);
         }

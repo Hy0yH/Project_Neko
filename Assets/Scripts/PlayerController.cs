@@ -17,10 +17,10 @@ public class PlayerController : MonoBehaviour
 
     [Header("Environment")]
     public Transform groundCheck; // 발 밑 오브젝트
-    [HideInInspector] public float groundCheckRadius = 0.2f; // 땅 체크 반경
+    [SerializeField] private float groundCheckRadius = 0.2f; // 땅 체크 반경
     public LayerMask groundLayer; // 땅 레이어
     public Transform wallCheck; // 벽 체크용 오브젝트
-    [HideInInspector] public float wallCheckRadius = 0.2f; // 벽 체크 반경
+    [SerializeField] private float wallCheckRadius = 0.2f; // 벽 체크 반경
     public LayerMask wallLayer; // 벽 레이어
 
     public float wallSlideSpeed = 2f; // 벽 타는 속도
@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public float moveInputX;
     [HideInInspector] public bool isGrounded;
     [HideInInspector] public bool jumpInputTriggered;
+    [HideInInspector] public bool jumpHeld;
     [HideInInspector] public bool isTouchingWall;
     [HideInInspector] public bool isWallJumping;
     [HideInInspector] public int facingDirection = 1; // 1은 오른쪽, -1은 왼쪽을 보고 있는 상태
@@ -49,7 +50,6 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
 
         // 물리 엔진의 기본 마찰력 및 공기 저항 개입을 차단해 스크립트 제어권 확보
-        rb.linearDamping = 0f;
         rb.sharedMaterial = new PhysicsMaterial2D { friction = 0f };
 
         // FSM 상태 인스턴스 생성
@@ -65,11 +65,13 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         if (moveAction != null) moveAction.action.Enable();
+        if (jumpAction != null) jumpAction.action.Enable();
     }
 
     private void OnDisable()
     {
         if (moveAction != null) moveAction.action.Disable();
+        if (jumpAction != null) jumpAction.action.Disable();
     }
 
     private void Start()
@@ -90,6 +92,7 @@ public class PlayerController : MonoBehaviour
         if (jumpAction != null)
         {
             jumpInputTriggered = jumpAction.action.WasPressedThisFrame();
+            jumpHeld = jumpAction.action.IsPressed();
         }
 
         // 이동 입력 감지
@@ -138,5 +141,12 @@ public class PlayerController : MonoBehaviour
         Vector3 currentScale = transform.localScale;
         currentScale.x *= -1;
         transform.localScale = currentScale;
+    }
+
+    public bool ConsumeJump()
+    {
+        if (!jumpInputTriggered) return false;
+        jumpInputTriggered = false; // 점프 입력 소비
+        return true;
     }
 }
