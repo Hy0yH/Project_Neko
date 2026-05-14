@@ -38,7 +38,7 @@ public class EnemyIdleState : IEnemyState
         timer += Time.deltaTime;
         if (timer >= idleTime)
         {
-            //enemy.ChangeState(enemy.patrolState);
+            enemy.ChangeState(enemy.patrolState);
         }
 
     }

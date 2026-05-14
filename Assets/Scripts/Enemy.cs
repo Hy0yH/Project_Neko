@@ -8,22 +8,30 @@ public class Enemy : MonoBehaviour
     public EnemyAttackSO attackSO;
     public EnemyMovementSO movementSO;
     public Transform playerTarget;
-    public float detectionRange; //플레이어를 감지할 범위
 
-    private IEnemyState currentState; //상태 머신 관리를 위한 내부 변수
+    [Header("Detection Settings")] //플레이어를 감지할 설정
+    public float detectionRange; //플레이어를 감지할 범위
+    public float detectionHeight; //플레이어를 감지할 높이
+    public float losePlayerRange; //플레이어를 잃을 범위
+
+    [Header("Patrol Settings")]
+    public Transform[] patrolPoints;
+    public float patrolReachDistance = 0.15f; //목표 지점에 도착했다고 판단할 거리
+
+    [HideInInspector] public IEnemyState currentState; //상태 머신 관리를 위한 내부 변수
 
     [HideInInspector] public float lastAttackTime; //개인 공격 시간
 
-    private IEnemyState idleState;
-    //private IEnemyState chaseState;
-    //private IEnemyState patrolState;
-    //private IEnemyState attackState;
+    [HideInInspector] public IEnemyState idleState;
+    [HideInInspector] public IEnemyState chaseState;
+    [HideInInspector] public IEnemyState patrolState;
+    //[HideInInspector] public IEnemyState attackState;
     
     [HideInInspector]public Rigidbody2D rigid;
 
     private void Start()
     {
-        //ChangeState(EnemyIdleState);
+        ChangeState(patrolState);
     }
 
 
@@ -32,8 +40,8 @@ public class Enemy : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
 
         idleState = new EnemyIdleState(this);
-        //chaseState = new EnemyChaseState(this);
-        //patrolState = new EnemyPatrolState(this);
+        chaseState = new EnemyChaseState(this);
+        patrolState = new EnemyPatrolState(this);
         //attackState = new EnemyAttackState(this);
     }
     

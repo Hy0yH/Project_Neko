@@ -150,6 +150,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1859897190}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &59073219
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 59073220}
+  m_Layer: 0
+  m_Name: Enemy_PatrolPoint_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &59073220
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59073219}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -3.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &944223720
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,6 +211,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1859897190}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1066014016
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1066014017}
+  m_Layer: 0
+  m_Name: Enemy_PatrolPoint_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1066014017
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066014016}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5, y: -3.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1459835510
@@ -451,8 +513,8 @@ Transform:
   m_GameObject: {fileID: 1650874308}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: -4.46, z: 0}
-  m_LocalScale: {x: 14.58872, y: 0.9713, z: 1}
+  m_LocalPosition: {x: -0.0227, y: -4.46, z: 0}
+  m_LocalScale: {x: 17.763226, y: 0.9713, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -603,7 +665,7 @@ Transform:
   m_GameObject: {fileID: 1726333380}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8601, y: -3.6, z: 0}
+  m_LocalPosition: {x: 2.8, y: -3.6, z: 0}
   m_LocalScale: {x: 0.5203, y: 0.5203, z: 0.5203}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -670,8 +732,14 @@ MonoBehaviour:
   health: 0
   attackSO: {fileID: 0}
   movementSO: {fileID: 11400000, guid: fc4da9c3657ddfc4690cee647eae0e18, type: 2}
-  playerTarget: {fileID: 944223721}
-  detectionRange: 0
+  playerTarget: {fileID: 1859897190}
+  detectionRange: 3
+  detectionHeight: 1.5
+  losePlayerRange: 5
+  patrolPoints:
+  - {fileID: 59073220}
+  - {fileID: 1066014017}
+  patrolReachDistance: 0.15
   lastAttackTime: 0
   rigid: {fileID: 0}
 --- !u!1 &1859897189
@@ -779,6 +847,7 @@ MonoBehaviour:
   moveInputX: 0
   isGrounded: 0
   jumpInputTriggered: 0
+  jumpHeld: 0
   isTouchingWall: 0
   isWallJumping: 0
   facingDirection: 1
@@ -1013,7 +1082,7 @@ Transform:
   m_GameObject: {fileID: 1987712005}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.8, y: -1.19, z: 0}
+  m_LocalPosition: {x: -8.7, y: -1.13, z: 0}
   m_LocalScale: {x: 1, y: 5.4560966, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1074,3 +1143,5 @@ SceneRoots:
   - {fileID: 944223721}
   - {fileID: 1987712007}
   - {fileID: 1726333383}
+  - {fileID: 59073220}
+  - {fileID: 1066014017}
