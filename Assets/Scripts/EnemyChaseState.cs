@@ -34,10 +34,10 @@ public class EnemyChaseState : IEnemyState
             return;
         }
 
-        if (isWithinAttckRange && canAttack)
+        /*if (isWithinAttckRange && canAttack)
         {
             enemy.ChangeState(enemy.attackState);
-        }
+        } */
     }
 
     public void FixedUpdateState()
