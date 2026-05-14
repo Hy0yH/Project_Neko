@@ -504,6 +504,7 @@ GameObject:
   - component: {fileID: 1859897192}
   - component: {fileID: 1859897191}
   - component: {fileID: 1859897197}
+  - component: {fileID: 1859897198}
   m_Layer: 0
   m_Name: 2_0
   m_TagString: Untagged
@@ -594,6 +595,7 @@ MonoBehaviour:
   moveInputX: 0
   isGrounded: 0
   jumpInputTriggered: 0
+  jumpHeld: 0
   isTouchingWall: 0
   isWallJumping: 0
   facingDirection: 1
@@ -754,6 +756,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 048556918eab33649983759590e272fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  maxHealth: 5
+--- !u!114 &1859897198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859897189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c2dc794a711ba7428eaa06f7f54a706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
+  attackData: {fileID: 11400000, guid: f4d2bf19e9b94424a804a6b89b730ce9, type: 2}
+  attackAction: {fileID: 3178152700758407170, guid: 1fd6d7089a041254aa9e192c8ef7ccb4, type: 3}
 --- !u!1 &1987712005
 GameObject:
   m_ObjectHideFlags: 0
