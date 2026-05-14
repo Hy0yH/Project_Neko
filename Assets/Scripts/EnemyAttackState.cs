@@ -11,7 +11,7 @@ public class EnemyAttackState : IEnemyState
 
     public void EnterState()
     {
-        
+        Debug.Log("Attack State Enter");
     }
 
     public void UpdateState()
