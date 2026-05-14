@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public IEnemyState idleState;
     [HideInInspector] public IEnemyState chaseState;
     [HideInInspector] public IEnemyState patrolState;
-    //[HideInInspector] public IEnemyState attackState;
+    [HideInInspector] public IEnemyState attackState;
     
     [HideInInspector]public Rigidbody2D rigid;
 
@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
         idleState = new EnemyIdleState(this);
         chaseState = new EnemyChaseState(this);
         patrolState = new EnemyPatrolState(this);
-        //attackState = new EnemyAttackState(this);
+        attackState = new EnemyAttackState(this);
     }
     
     //상태를 변경해주는 함수

@@ -5,6 +5,7 @@ public class EnemyDashAttackSO : EnemyAttackSO
 {
     [Header("Dash Settings")]
     public float dashSpeed; //돌진 속도
+    public float dashDuration; //돌진 지속 시간
 
     public override void ExcuteAttack(Enemy enemy)
     {
