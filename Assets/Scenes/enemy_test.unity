@@ -730,7 +730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   health: 0
-  attackSO: {fileID: 0}
+  attackSO: {fileID: 11400000, guid: 63b4d17467ed41d4fb03274fe8d8f063, type: 2}
   movementSO: {fileID: 11400000, guid: fc4da9c3657ddfc4690cee647eae0e18, type: 2}
   playerTarget: {fileID: 1859897190}
   detectionRange: 3

@@ -34,10 +34,17 @@ public class EnemyChaseState : IEnemyState
             return;
         }
 
-        /*if (isWithinAttckRange && canAttack)
+        if (enemy.attackSO != null)
         {
-            enemy.ChangeState(enemy.attackState);
-        } */
+            bool isWithinAttackRange = distanceToPlayer <= enemy.attackSO.enemyAttackRange; //플레이어가 공격 범위 안에 있는지 확인
+            bool canAttack = enemy.lastAttackTime >= enemy.attackSO.enemyAttackDelay; //마지막 공격으로부터 공격 딜레이가 끝났는지 확인
+
+            if (isWithinAttackRange && canAttack)
+            {
+                enemy.ChangeState(enemy.attackState);
+                return;
+            } 
+        }
     }
 
     public void FixedUpdateState()
