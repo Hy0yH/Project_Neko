@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: dca91dd2e8abf3d4dbaa05ec2d8f96ca
+guid: a783bd36743874547b1384eb7d5008ea
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6937817954938267909
-    second: 2_0
+      213: -4835419198617781318
+    second: Neko_Standard_4f_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 2_0
+      name: Neko_Standard_4f_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 55
+        width: 36
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5092c600ca4184060800000000000000
-      internalID: 6937817954938267909
+      spriteID: abb7846abd325ecb0800000000000000
+      internalID: -4835419198617781318
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      2_0: 6937817954938267909
+      Neko_Standard_4f_0: -4835419198617781318
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

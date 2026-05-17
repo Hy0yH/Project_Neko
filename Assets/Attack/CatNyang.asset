@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: CatNyang
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
   damage: 1
-  startupTime: 0.1
+  startupTime: 0.01
   activeTime: 0.1
   recoveryTime: 0.2
-  hitboxOffset: {x: 0.8, y: 0}
-  hitboxSize: {x: 1, y: 0.6}
+  hitboxOffset: {x: 0.8, y: 0.5}
+  hitboxSize: {x: 1, y: 1}
   hitLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 256
   animatorTrigger: Attack
