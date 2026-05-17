@@ -23,20 +23,19 @@ public class EnemyChaseState : IEnemyState
             return;
         }
 
-        float distanceToPlayer = Vector2.Distance(enemy.transform.position, enemy.playerTarget.position);
+        float distanceX = enemy.playerTarget.position.x - enemy.transform.position.x;
+        float absDistanceX = Mathf.Abs(distanceX);
+        float distanceY = Mathf.Abs(enemy.playerTarget.position.y - enemy.transform.position.y);
 
-        //Debug.Log($"Distance To Player: {distanceToPlayer}, Lose Range: {enemy.losePlayerRange}"); 문제가 생겼을 때, 한번씩 로그 출력을 통해 문제 원인 파악
-
-
-        if (distanceToPlayer > enemy.losePlayerRange)
+        if (absDistanceX > enemy.losePlayerRange || distanceY > enemy.detectionHeight)
         {
-            enemy.ChangeState(enemy.patrolState); //플레이어를 잃으면 순찰 상태로 변경
+            enemy.ChangeState(enemy.patrolState);
             return;
         }
 
         if (enemy.attackSO != null)
         {
-            bool isWithinAttackRange = distanceToPlayer <= enemy.attackSO.enemyAttackRange; //플레이어가 공격 범위 안에 있는지 확인
+            bool isWithinAttackRange = absDistanceX <= enemy.attackSO.enemyAttackRange; //플레이어가 공격 범위 안에 있는지 확인
             bool canAttack = enemy.lastAttackTime >= enemy.attackSO.enemyAttackDelay; //마지막 공격으로부터 공격 딜레이가 끝났는지 확인
 
             if (isWithinAttackRange && canAttack)

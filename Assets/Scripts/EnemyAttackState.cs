@@ -2,8 +2,16 @@ using UnityEngine;
 
 public class EnemyAttackState : IEnemyState
 {
+
+    private enum AttackPhase
+    {
+        Active,
+        Recovery
+    }
     private Enemy enemy;
 
+    private AttackPhase currentPhase;
+    private float phaseTimer;
 
     public EnemyAttackState(Enemy enemy)
     {
@@ -12,9 +20,25 @@ public class EnemyAttackState : IEnemyState
 
     public void EnterState()
     {
-        //Debug.Log("Attack State Enter");
+        if (enemy.attackSO == null)
+        {
+            enemy.ChangeState(enemy.chaseState);
+            return;
+        }
 
-        TryAttack();
+        //Debug.Log("Attack State Enter");
+        currentPhase = AttackPhase.Active;
+        phaseTimer = 0f;
+
+        enemy.attackSO.ExcuteAttack(enemy);
+        enemy.lastAttackTime = 0f;
+
+        enemy.attackDirectionX = Mathf.Sign(enemy.playerTarget.position.x - enemy.transform.position.x);
+
+        if (enemy.attackDirectionX == 0)
+        {
+            enemy.attackDirectionX = Mathf.Sign(enemy.transform.localScale.x);
+        }
     }
 
     public void UpdateState()
@@ -26,40 +50,45 @@ public class EnemyAttackState : IEnemyState
             return;
         }
 
-        if (enemy.playerTarget == null)
+        phaseTimer += Time.deltaTime;
+
+        if (currentPhase == AttackPhase.Active)
         {
-            enemy.ChangeState(enemy.patrolState);
+            if (phaseTimer >= enemy.attackSO.enemyAttackDuration)
+            {
+                StopCurrentMovement();
+                currentPhase = AttackPhase.Recovery;
+                phaseTimer = 0f;
+            }
+
             return;
         }
 
-        float distanceToPlayer = Vector2.Distance(enemy.transform.position, enemy.playerTarget.position); //플레이어와 에너미와의 거리 계산
-
-        if (distanceToPlayer > enemy.losePlayerRange)
+        if (currentPhase == AttackPhase.Recovery)
         {
-            enemy.ChangeState(enemy.patrolState);
+            StopCurrentMovement();
+
+            if (phaseTimer >= enemy.attackSO.enemyRecoveryTime)
+            {
+                DecideNextState();
+            }
+
             return;
         }
-
-        if (distanceToPlayer > enemy.attackSO.enemyAttackRange)
-        {
-            enemy.ChangeState(enemy.chaseState);
-            return;
-        }
-
-        bool canAttack = enemy.lastAttackTime >= enemy.attackSO.enemyAttackDelay; //마지막 공격으로부터 공격 딜레이가 끝났는지 확인
-
-        if (canAttack)
-        {
-            enemy.attackSO.ExcuteAttack(enemy);
-            enemy.lastAttackTime = 0f; //공격 직후이므로 공격 시간 초기화
-        }
-
-        
     }
 
     public void FixedUpdateState()
     {
-        
+        if (enemy.attackSO == null) return;
+
+        if (currentPhase == AttackPhase.Active)
+        {
+            enemy.attackSO.ExcuteAttack(enemy);
+        }
+        else if (currentPhase == AttackPhase.Recovery)
+        {
+            StopCurrentMovement();
+        }
     }
 
     public void ExitState()
@@ -67,12 +96,26 @@ public class EnemyAttackState : IEnemyState
         
     }
 
-    private void TryAttack()
+    private void StopCurrentMovement()
     {
-        if (enemy.attackSO != null)
+        if (enemy.rigid == null) return;
+
+        enemy.rigid.linearVelocity = new Vector2(0f, enemy.rigid.linearVelocity.y);
+    }
+
+    private void DecideNextState()
+    {
+        float distanceX = enemy.playerTarget.position.x - enemy.transform.position.x;
+        float absDistanceX = Mathf.Abs(distanceX);
+        float distanceY = Mathf.Abs(enemy.playerTarget.position.y - enemy.transform.position.y);
+
+        if (absDistanceX > enemy.losePlayerRange || distanceY > enemy.detectionHeight)
         {
-            enemy.attackSO.ExcuteAttack(enemy);
-            enemy.lastAttackTime = 0f; //공격 직후이므로 공격 시간 초기화
+            enemy.ChangeState(enemy.patrolState);
+            return;
         }
+
+        enemy.ChangeState(enemy.chaseState);
+
     }
 }
