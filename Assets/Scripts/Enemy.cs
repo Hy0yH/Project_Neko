@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public IEnemyState currentState; //상태 머신 관리를 위한 내부 변수
 
     [HideInInspector] public float lastAttackTime; //개인 공격 시간
+    [HideInInspector] public float attackDirectionX; //공격 방향 X
 
     [HideInInspector] public IEnemyState idleState;
     [HideInInspector] public IEnemyState chaseState;
