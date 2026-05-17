@@ -13,8 +13,8 @@ public class AttackSO : ScriptableObject
     // 총 쿨다운 = startup + active + recovery
 
     [Header("Hitbox")]
-    public Vector2 hitboxOffset = new Vector2(0.8f, 0f);
-    public Vector2 hitboxSize = new Vector2(1f, 0.6f);
+    public Vector2 hitboxOffset = new Vector2(0.8f, 0.5f);
+    public Vector2 hitboxSize = new Vector2(1f, 1f);
     public LayerMask hitLayers;
 
     [Header("Animation")]

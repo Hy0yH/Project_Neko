@@ -66,6 +66,7 @@ public class PlayerCombat : MonoBehaviour
         currentPhase = AttackPhase.Startup;
         stateTimer = attackData.startupTime;
         anim.SetTrigger(attackData.animatorTrigger);
+        Debug.Log("Attack start");
     }
     private void CheckHitbox()
     {
@@ -73,10 +74,11 @@ public class PlayerCombat : MonoBehaviour
         Collider2D[] cols = Physics2D.OverlapBoxAll(pos, attackData.hitboxSize, 0f, attackData.hitLayers);
         foreach(var col in cols)
         {
-            if(colliders.Add(col))
+            if (colliders.Add(col))
             {
                 IDamageable damageable = col.GetComponent<IDamageable>();
                 damageable?.TakeDamage(attackData.damage);
+                Debug.Log($"Hit {col.name} for {attackData.damage} damage");
             }
         }
     }
