@@ -6,8 +6,6 @@ public class WalkState : PlayerState
 
     public override void Enter()
     {
-        // 걷는 애니메이션 시작
-        if (player.anim != null) player.anim.SetBool("isWalking", true);
     }
 
     public override void Update()
