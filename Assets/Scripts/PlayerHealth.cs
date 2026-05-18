@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerHealth : MonoBehaviour, IDamageable
@@ -14,10 +15,16 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     // 플레이어의 현재 체력 (get은 외부에서 읽을 수 있지만, set은 private으로 설정하여 외부에서 직접 변경할 수 없도록 함)
     public int currentHealth { get; private set; }
 
+    // 체력 변경 시 이벤트
+    public event Action<int, int> OnHealthChanged;
+
     private void Start()
     {
         // 게임 시작 시 플레이어의 체력을 최대 체력으로 초기화
         currentHealth = maxHealth;
+
+        // 초기 체력 UI 업데이트
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
     // 플레이어가 피격 당할 시
@@ -37,6 +44,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         // 무적 타이머 시작
         invincibilityTimer = invincibilityDuration;
+
+        // 체력 변경 이벤트 호출
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
     private void Die()
@@ -56,5 +66,18 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         {
             TakeDamage(1);
         }
+    }
+
+    public void Heal(int amount)
+    {
+        // 풀피 OR 죽었으면 리턴
+        if (currentHealth == maxHealth || currentHealth <= 0) return;
+
+        // 체력 회복
+        currentHealth = Mathf.Min(maxHealth, currentHealth + amount);
+        Debug.Log($"Healed: {amount}, currentHP: {currentHealth}");
+
+        // 체력 변경 이벤트 호출
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 }
