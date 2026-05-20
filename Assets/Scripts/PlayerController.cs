@@ -99,8 +99,10 @@ public class PlayerController : MonoBehaviour
         if (moveAction != null)
         {
             moveInputX = moveAction.action.ReadValue<Vector2>().x;
-            if(anim != null && moveInputX != 0f)
+            if (anim != null && moveInputX != 0f)
                 anim.SetBool("isWalking", true);
+            else if (moveInputX == 0f)
+                anim.SetBool("isWalking", false);
         }
 
         // 이동 방향과 현재 바라보는 방향을 비교해서 뒤집기 판단
