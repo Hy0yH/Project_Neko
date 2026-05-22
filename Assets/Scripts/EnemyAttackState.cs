@@ -30,6 +30,7 @@ public class EnemyAttackState : IEnemyState
         currentPhase = AttackPhase.Active;
         phaseTimer = 0f;
 
+
         enemy.attackSO.ExcuteAttack(enemy);
         enemy.lastAttackTime = 0f;
 
@@ -56,6 +57,8 @@ public class EnemyAttackState : IEnemyState
         {
             if (phaseTimer >= enemy.attackSO.enemyAttackDuration)
             {
+                
+
                 StopCurrentMovement();
                 currentPhase = AttackPhase.Recovery;
                 phaseTimer = 0f;
@@ -93,7 +96,7 @@ public class EnemyAttackState : IEnemyState
 
     public void ExitState()
     {
-        
+
     }
 
     private void StopCurrentMovement()
