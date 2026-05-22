@@ -505,7 +505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee781332d7dcff419a2a5ff28681eb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  health: 0
+  health: 3
   attackSO: {fileID: 11400000, guid: 63b4d17467ed41d4fb03274fe8d8f063, type: 2}
   movementSO: {fileID: 11400000, guid: fc4da9c3657ddfc4690cee647eae0e18, type: 2}
   playerTarget: {fileID: 0}
@@ -519,6 +519,8 @@ MonoBehaviour:
   lastAttackTime: 0
   attackDirectionX: 0
   rigid: {fileID: 0}
+  hitFalshDuration: 0.1
+  hitFlashMaterial: {fileID: 2100000, guid: 5f46f8578d1b9534296d088c6c7c6f95, type: 2}
 --- !u!61 &236399768
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -563,7 +565,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.34, y: 0.29}
+  m_Size: {x: 0.9, y: 0.75}
   m_EdgeRadius: 0
 --- !u!50 &236399769
 Rigidbody2D:
@@ -2978,7 +2980,7 @@ GameObject:
   - component: {fileID: 1859897198}
   m_Layer: 0
   m_Name: 2_0
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

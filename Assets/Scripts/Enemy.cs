@@ -1,8 +1,14 @@
 using UnityEngine;
+using System.Collections;
+using System;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamageable
 {
-    public float health;
+    public int health;
+
+    public static event Action<Enemy> OnEnemyDied; //적이 죽었을 때 호출되는 이벤트
+
+    private bool isEnemyDead;
 
     [Header("AI Data")] //인스펙터에서 SO 데이터들과 플레이어 타켓을 할당
     public EnemyAttackSO attackSO;
@@ -30,6 +36,12 @@ public class Enemy : MonoBehaviour
     
     [HideInInspector]public Rigidbody2D rigid;
 
+    [SerializeField] private float hitFalshDuration = 0.1f; //피격 시 깜빡이는 시간
+    [SerializeField] private Material hitFlashMaterial; //피격 시 사용할 머티리얼
+    private SpriteRenderer spriteRenderer;
+    private Material originalMaterial; //원래 머티리얼을 저장할 변수
+    private Coroutine hitFlashCoroutine;
+
     private void Start()
     {
         ChangeState(patrolState);
@@ -39,6 +51,13 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (spriteRenderer != null)
+        {
+            originalMaterial = spriteRenderer.material; //원래 머티리얼 저장
+        }
 
         idleState = new EnemyIdleState(this);
         chaseState = new EnemyChaseState(this);
@@ -75,4 +94,73 @@ public class Enemy : MonoBehaviour
             currentState.FixedUpdateState();
         }
     }
+
+    public void TakeDamage(int damage)
+    {
+        if (isEnemyDead) return;
+
+        health -= damage;
+
+        if (hitFlashCoroutine != null)
+        {
+            StopCoroutine(hitFlashCoroutine);
+        }
+
+        hitFlashCoroutine = StartCoroutine(HitFlash());
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        if (isEnemyDead) return;
+
+        isEnemyDead = true;
+
+        //Debug.Log($"Enemy died event sent: {name}");
+
+        OnEnemyDied?.Invoke(this); //적이 죽었을 때 이벤트 호출
+
+        Destroy(gameObject); //적 오브젝트 제거
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        TryDamagePlayer(collision);
+    }
+
+    private void OnCollisionStay2D(Collision2D collsion)
+    {
+        TryDamagePlayer(collsion);
+    }
+
+    private void TryDamagePlayer(Collision2D collision)
+    {
+        if (attackSO == null) return; //공격 데이터가 할당되어 있지 않으면 아무것도 하지 않음
+        if (!collision.collider.CompareTag("Player")) return; //충돌한 객체가 플레이어가 아니면 아무것도 하지 않음
+
+        IDamageable damageable = collision.collider.GetComponent<IDamageable>();
+        damageable?.TakeDamage(attackSO.enemyDamage);
+        Debug.Log($"Hit {collision.collider.name} for {attackSO.enemyDamage} damage");
+    }
+
+    private IEnumerator HitFlash()
+    {
+        if (spriteRenderer == null) yield break;
+        if (hitFlashMaterial == null) yield break;
+
+        spriteRenderer.material = hitFlashMaterial; //피격 시 지정된 머티리얼로 변경
+
+        yield return new WaitForSeconds(hitFalshDuration); //잠시 대기
+
+        spriteRenderer.material = originalMaterial; //원래 머티리얼로 복원
+        hitFlashCoroutine = null; //코루틴 종료 표시
+    }
+
+    
+
+
 }
