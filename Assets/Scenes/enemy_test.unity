@@ -264,7 +264,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &1188615617
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -455,6 +455,7 @@ MonoBehaviour:
   dashStopDistance: 0.3
   maxDashTime: 2
   ignorePlayerCollision: 1
+  spriteFacingRightByDefault: 0
   rigid: {fileID: 0}
 --- !u!1 &1459835510
 GameObject:
@@ -782,7 +783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!50 &1726333381
 Rigidbody2D:
   serializedVersion: 5
@@ -956,6 +957,8 @@ MonoBehaviour:
   lastAttackTime: 0
   attackDirectionX: 0
   rigid: {fileID: 0}
+  hitFalshDuration: 0.1
+  hitFlashMaterial: {fileID: 0}
 --- !u!95 &1726333386
 Animator:
   serializedVersion: 7
