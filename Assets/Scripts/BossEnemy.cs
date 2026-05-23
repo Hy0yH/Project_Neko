@@ -25,6 +25,9 @@ public class BossEnemy : MonoBehaviour
 
     [Header("Collision")]
     [SerializeField] private bool ignorePlayerCollision = true;
+
+    [Header("Visual")]
+    [SerializeField] private bool spriteFacingRightByDefault = false; //스프라이트가 기본적으로 오른쪽을 향하는지 여부
     
     [HideInInspector] public Rigidbody2D rigid;
     private BossState currentState = BossState.Idle;
@@ -36,6 +39,8 @@ public class BossEnemy : MonoBehaviour
     private float currentAngle;
     private float traveledAngle;
     private float dashTimer;
+    private SpriteRenderer spriteRenderer;
+
 
     private void Start()
     {
@@ -46,6 +51,7 @@ public class BossEnemy : MonoBehaviour
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -59,6 +65,21 @@ public class BossEnemy : MonoBehaviour
                 UpdateDashToPlayer();
                 break;
         }
+    }
+
+    private void UpdateFacingToPlayer(Vector2 bossPosition)
+    {
+        if (spriteRenderer == null) return;
+        if (playerTarget == null) return;
+
+        float directionX = playerTarget.position.x - bossPosition.x;
+
+        if (Mathf.Approximately(directionX, 0f)) return;
+
+        bool isPlayerOnRight = directionX > 0f;
+
+        spriteRenderer.flipX = spriteFacingRightByDefault ? !isPlayerOnRight : isPlayerOnRight;
+
     }
 
     public void StartInfinityAttack()
@@ -218,6 +239,8 @@ public class BossEnemy : MonoBehaviour
 
     private void MoveTo(Vector2 position)
     {
+        UpdateFacingToPlayer(position);
+
         if (rigid != null)
         {
             rigid.linearVelocity = Vector2.zero;
