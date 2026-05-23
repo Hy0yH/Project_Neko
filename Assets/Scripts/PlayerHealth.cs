@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using System.Runtime.CompilerServices;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +14,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     // 피격 시 무적
     private float invincibilityDuration = 1.5f; // 1.5초 동안 무적
     private float invincibilityTimer = 0f; // 무적 타이머
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
+    [SerializeField] private float blinkInterval = 0.1f;
+    [SerializeField] private Color invincibleColor = Color.gray;
+    private Coroutine blinkCoroutine;
+    [SerializeField] private CinemachineImpulseSource impulseSource;
 
     // 플레이어의 현재 체력 (get은 외부에서 읽을 수 있지만, set은 private으로 설정하여 외부에서 직접 변경할 수 없도록 함)
     public int currentHealth { get; private set; }
@@ -18,6 +27,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     // 체력 변경 시 이벤트
     public event Action<int, int> OnHealthChanged;
 
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null) originalColor = spriteRenderer.color;
+    }
     private void Start()
     {
         // 게임 시작 시 플레이어의 체력을 최대 체력으로 초기화
@@ -47,6 +61,13 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         // 체력 변경 이벤트 호출
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
+
+        // 색 변경을 통한 깜빡임 표현
+        if (blinkCoroutine != null) StopCoroutine(blinkCoroutine);
+        blinkCoroutine = StartCoroutine(InvincibilityBlink());
+
+        // 카메라 흔들림
+        impulseSource?.GenerateImpulse();
     }
 
     private void Die()
@@ -55,17 +76,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         // 죽음 처리
     }
 
-    // 테스트용 코드
     private void Update()
     {
         // 무적 타이머가 0보다 크면 감소
         if (invincibilityTimer > 0f) invincibilityTimer -= Time.deltaTime;
-
-        // 키보드의 H 키를 누르면 1의 피해를 입음
-        if (Keyboard.current != null && Keyboard.current.hKey.wasPressedThisFrame)
-        {
-            TakeDamage(1);
-        }
     }
 
     public bool Heal(int amount)
@@ -81,5 +95,22 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
 
         return true;
+    }
+
+    private IEnumerator InvincibilityBlink()
+    {
+        while(invincibilityTimer > 0f)
+        {
+            // 회색으로
+            spriteRenderer.color = invincibleColor;
+            yield return new WaitForSeconds(blinkInterval);
+
+            // 원색으로
+            spriteRenderer.color = originalColor;
+            yield return new WaitForSeconds(blinkInterval);
+        }
+
+        // 안전 복구
+        spriteRenderer.color = originalColor;
     }
 }
