@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Attack", menuName = "ScriptableObjects/Attack")]
-public class AttackSO : ScriptableObject
+public class PlayerAttackSO : ScriptableObject
 {
     [Header("Damage")]
     public int damage = 1;

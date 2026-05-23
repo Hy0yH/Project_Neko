@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerCombat : MonoBehaviour
 {
-    [SerializeField] private AttackSO attackData;
+    [SerializeField] private PlayerAttackSO attackData;
     [SerializeField] private InputActionReference attackAction;
     private Animator anim;
     private enum AttackPhase { Idle, Startup, Active, Recovery }
