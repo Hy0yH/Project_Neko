@@ -6,7 +6,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 {
 
     // 플레이어의 최대 체력
-    [SerializeField] private int maxHealth = 5;
+    public int maxHealth { get; private set; } = 5;
 
     // 피격 시 무적
     private float invincibilityDuration = 1.5f; // 1.5초 동안 무적
@@ -68,10 +68,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         }
     }
 
-    public void Heal(int amount)
+    public bool Heal(int amount)
     {
         // 풀피 OR 죽었으면 리턴
-        if (currentHealth == maxHealth || currentHealth <= 0) return;
+        if (currentHealth == maxHealth || currentHealth <= 0) return false;
 
         // 체력 회복
         currentHealth = Mathf.Min(maxHealth, currentHealth + amount);
@@ -79,5 +79,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         // 체력 변경 이벤트 호출
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
+
+        return true;
     }
 }
