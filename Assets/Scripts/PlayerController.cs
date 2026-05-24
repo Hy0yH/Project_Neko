@@ -95,6 +95,10 @@ public class PlayerController : MonoBehaviour
             jumpHeld = jumpAction.action.IsPressed();
         }
 
+        // 낙하 속도 측정
+        if (anim != null)
+            anim.SetFloat("velocityY", rb.linearVelocityY);
+
         // 이동 입력 감지
         if (moveAction != null)
         {

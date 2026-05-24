@@ -2957,7 +2957,7 @@ MonoBehaviour:
   m_RefResolutionX: 640
   m_RefResolutionY: 320
   m_CropFrame: 0
-  m_GridSnapping: 1
+  m_GridSnapping: 0
   m_FilterMode: 0
   m_UpscaleRT: 0
   m_PixelSnapping: 0
@@ -3493,7 +3493,7 @@ GameObject:
   - component: {fileID: 1859897200}
   - component: {fileID: 1859897201}
   m_Layer: 0
-  m_Name: Character
+  m_Name: Neko
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
