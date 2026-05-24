@@ -29,6 +29,10 @@ public class JumpState : PlayerState
         if (player.isGrounded && player.rb.linearVelocityY <= 0f)
         {
             player.isWallJumping = false; // 벽 점프 상태 해제
+
+            // 점프 애니메이션 종료
+            if (player.anim != null) player.anim.SetBool("isJumping", false);
+
             if (Mathf.Abs(player.moveInputX) > 0.01f) player.ChangeState(player.walkState);
             else player.ChangeState(player.idleState);
         }
@@ -49,10 +53,5 @@ public class JumpState : PlayerState
             player.rb.linearVelocityX = Mathf.MoveTowards(
                 player.rb.linearVelocityX, targetVelocityX, player.acceleration * Time.fixedDeltaTime);
         }
-    }
-    public override void Exit()
-    {
-        // 점프 애니메이션 종료
-        if (player.anim != null) player.anim.SetBool("isJumping", false);
     }
 }

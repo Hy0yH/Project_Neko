@@ -17,6 +17,10 @@ public class WallSlideState : PlayerState
         if (player.isGrounded && player.rb.linearVelocityY <= 0f)
         {
             player.isWallJumping = false; // 벽 점프 상태 해제
+
+            // 점프 애니메이션 종료
+            if (player.anim != null) player.anim.SetBool("isJumping", false);
+
             player.ChangeState(player.idleState);
             return;
         }
