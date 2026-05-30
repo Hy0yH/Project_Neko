@@ -20,6 +20,8 @@ public class EnemyAttackState : IEnemyState
 
     public void EnterState()
     {
+        enemy.anim.SetBool("isAttacking", true);
+
         if (enemy.attackSO == null)
         {
             enemy.ChangeState(enemy.chaseState);
@@ -96,7 +98,7 @@ public class EnemyAttackState : IEnemyState
 
     public void ExitState()
     {
-
+        enemy.anim.SetBool("isAttacking", false);
     }
 
     private void StopCurrentMovement()
