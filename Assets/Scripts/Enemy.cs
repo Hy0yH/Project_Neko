@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour, IDamageable
     [HideInInspector] public IEnemyState attackState;
     
     [HideInInspector]public Rigidbody2D rigid;
+    [HideInInspector] public Animator anim;
 
     [SerializeField] private float hitFalshDuration = 0.1f; //피격 시 깜빡이는 시간
     [SerializeField] private Material hitFlashMaterial; //피격 시 사용할 머티리얼
@@ -51,7 +52,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-
+        anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         if (spriteRenderer != null)
