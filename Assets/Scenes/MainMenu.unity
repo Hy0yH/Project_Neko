@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 25948566}
   - component: {fileID: 25948565}
   m_Layer: 5
-  m_Name: SoundMinText
+  m_Name: BGMSoundMinText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -523,6 +523,7 @@ GameObject:
   - component: {fileID: 52789455}
   - component: {fileID: 52789454}
   - component: {fileID: 52789453}
+  - component: {fileID: 52789457}
   m_Layer: 5
   m_Name: SettingsButton
   m_TagString: Untagged
@@ -664,6 +665,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 52789451}
   m_CullTransparentMesh: 1
+--- !u!114 &52789457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52789451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7caf75e4d6d65e47a002168ac7ee091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuButtonHoverEffect
+  targetText: {fileID: 1308144926}
+  hoverColor: {r: 1, g: 0.9, b: 0.55, a: 1}
+  hoverFontSizeIncrease: 5
 --- !u!1 &57126864
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,9 +1271,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 88710352}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 0.8
+  m_MaxValue: 100
+  m_WholeNumbers: 1
+  m_Value: 50
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1515,6 +1531,8 @@ MonoBehaviour:
   keyBindingSettingsText: {fileID: 1262768120}
   selectedColor: {r: 1, g: 1, b: 1, a: 1}
   normalColor: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 1}
+  displaySettingsHoverEffect: {fileID: 375156050}
+  keyBindingSettingsHoverEffect: {fileID: 1308259906}
 --- !u!1 &146319248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1572,7 +1590,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 80
+  m_text: 50
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c3702b67305f6e246be35b73de661d4b, type: 2}
   m_sharedMaterial: {fileID: -7548262398916953536, guid: c3702b67305f6e246be35b73de661d4b, type: 2}
@@ -1860,7 +1878,7 @@ GameObject:
   - component: {fileID: 216477222}
   - component: {fileID: 216477221}
   m_Layer: 5
-  m_Name: SoundValueText
+  m_Name: BGMSoundValueText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2072,7 +2090,7 @@ GameObject:
   - component: {fileID: 235528974}
   - component: {fileID: 235528973}
   m_Layer: 5
-  m_Name: SoundMaxText
+  m_Name: BGMSoundMaxText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2384,6 +2402,7 @@ GameObject:
   - component: {fileID: 325424578}
   - component: {fileID: 325424577}
   - component: {fileID: 325424576}
+  - component: {fileID: 325424580}
   m_Layer: 5
   m_Name: SaveButton
   m_TagString: Untagged
@@ -2474,7 +2493,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 325424578}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1215944748}
+        m_TargetAssemblyTypeName: DisplaySettingsController, Assembly-CSharp
+        m_MethodName: SaveSettings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &325424578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2513,6 +2544,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 325424574}
   m_CullTransparentMesh: 1
+--- !u!114 &325424580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325424574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7caf75e4d6d65e47a002168ac7ee091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuButtonHoverEffect
+  targetText: {fileID: 1813300935}
+  hoverColor: {r: 1, g: 0.9, b: 0.55, a: 1}
+  hoverFontSizeIncrease: 5
 --- !u!1 &330554863
 GameObject:
   m_ObjectHideFlags: 0
@@ -2526,6 +2572,7 @@ GameObject:
   - component: {fileID: 330554867}
   - component: {fileID: 330554866}
   - component: {fileID: 330554865}
+  - component: {fileID: 330554869}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -2616,7 +2663,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 330554867}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 556093530}
+        m_TargetAssemblyTypeName: MainMenuUI, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &330554867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2655,6 +2714,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330554863}
   m_CullTransparentMesh: 1
+--- !u!114 &330554869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330554863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7caf75e4d6d65e47a002168ac7ee091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuButtonHoverEffect
+  targetText: {fileID: 83158455}
+  hoverColor: {r: 1, g: 0.9, b: 0.55, a: 1}
+  hoverFontSizeIncrease: 5
 --- !u!1 &338438897
 GameObject:
   m_ObjectHideFlags: 0
@@ -3017,6 +3091,7 @@ GameObject:
   - component: {fileID: 375156048}
   - component: {fileID: 375156047}
   - component: {fileID: 375156046}
+  - component: {fileID: 375156050}
   m_Layer: 5
   m_Name: DisplaySoundSettingButton
   m_TagString: Untagged
@@ -3158,6 +3233,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375156044}
   m_CullTransparentMesh: 1
+--- !u!114 &375156050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375156044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7caf75e4d6d65e47a002168ac7ee091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuButtonHoverEffect
+  targetText: {fileID: 1785314047}
+  hoverColor: {r: 1, g: 0.9, b: 0.55, a: 1}
+  hoverFontSizeIncrease: 5
 --- !u!1 &400055890
 GameObject:
   m_ObjectHideFlags: 0
@@ -3226,8 +3316,8 @@ Canvas:
   m_GameObject: {fileID: 400055890}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1778459319}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -3274,7 +3364,7 @@ GameObject:
   - component: {fileID: 414716125}
   - component: {fileID: 414716124}
   m_Layer: 5
-  m_Name: SoundMinText
+  m_Name: MasterSoundMinText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3766,6 +3856,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuUI
   mainPanel: {fileID: 1607016456}
   settingsPanel: {fileID: 142169596}
+  startSceneName: test
 --- !u!1 &571800445
 GameObject:
   m_ObjectHideFlags: 0
@@ -3900,6 +3991,7 @@ GameObject:
   - component: {fileID: 648873947}
   - component: {fileID: 648873946}
   - component: {fileID: 648873945}
+  - component: {fileID: 648873949}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -4029,6 +4121,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648873943}
   m_CullTransparentMesh: 1
+--- !u!114 &648873949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648873943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7caf75e4d6d65e47a002168ac7ee091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuButtonHoverEffect
+  targetText: {fileID: 1406450165}
+  hoverColor: {r: 1, g: 0.9, b: 0.55, a: 1}
+  hoverFontSizeIncrease: 5
 --- !u!1 &724594823
 GameObject:
   m_ObjectHideFlags: 0
@@ -4290,7 +4397,7 @@ GameObject:
   - component: {fileID: 742284206}
   - component: {fileID: 742284205}
   m_Layer: 5
-  m_Name: SoundValueText
+  m_Name: MasterSoundValueText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4878,7 +4985,7 @@ GameObject:
   - component: {fileID: 842530633}
   - component: {fileID: 842530632}
   m_Layer: 5
-  m_Name: SoundMaxText
+  m_Name: SFXSoundMaxText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5051,7 +5158,7 @@ GameObject:
   - component: {fileID: 889054199}
   - component: {fileID: 889054198}
   m_Layer: 5
-  m_Name: SoundMaxText
+  m_Name: MasterSoundMaxText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5388,6 +5495,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 904288175}
   m_CullTransparentMesh: 1
+--- !u!1 &911040107
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 911040109}
+  - component: {fileID: 911040108}
+  m_Layer: 0
+  m_Name: PostProcessVolume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &911040108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911040107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: b80986d6698a9bc40932a8da8876c05c, type: 2}
+--- !u!4 &911040109
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911040107}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -201.87897, y: 92.442566, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &912625503
 GameObject:
   m_ObjectHideFlags: 0
@@ -5537,7 +5693,7 @@ GameObject:
   - component: {fileID: 961969401}
   - component: {fileID: 961969400}
   m_Layer: 5
-  m_Name: SoundValueText
+  m_Name: SFXSoundValueText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5871,6 +6027,7 @@ GameObject:
   - component: {fileID: 999659712}
   - component: {fileID: 999659711}
   - component: {fileID: 999659710}
+  - component: {fileID: 999659714}
   m_Layer: 5
   m_Name: CreditsButton
   m_TagString: Untagged
@@ -6000,6 +6157,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 999659708}
   m_CullTransparentMesh: 1
+--- !u!114 &999659714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999659708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7caf75e4d6d65e47a002168ac7ee091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuButtonHoverEffect
+  targetText: {fileID: 1552640955}
+  hoverColor: {r: 1, g: 0.9, b: 0.55, a: 1}
+  hoverFontSizeIncrease: 5
 --- !u!1 &1025641700
 GameObject:
   m_ObjectHideFlags: 0
@@ -6089,6 +6261,7 @@ GameObject:
   - component: {fileID: 1038524555}
   - component: {fileID: 1038524554}
   - component: {fileID: 1038524553}
+  - component: {fileID: 1038524557}
   m_Layer: 5
   m_Name: ResetDefaultButton
   m_TagString: Untagged
@@ -6179,7 +6352,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1038524555}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1215944748}
+        m_TargetAssemblyTypeName: DisplaySettingsController, Assembly-CSharp
+        m_MethodName: ResetToDefault
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1038524555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6218,6 +6403,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038524551}
   m_CullTransparentMesh: 1
+--- !u!114 &1038524557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038524551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7caf75e4d6d65e47a002168ac7ee091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuButtonHoverEffect
+  targetText: {fileID: 1201209962}
+  hoverColor: {r: 1, g: 0.9, b: 0.55, a: 1}
+  hoverFontSizeIncrease: 5
 --- !u!1 &1055852832
 GameObject:
   m_ObjectHideFlags: 0
@@ -6352,6 +6552,7 @@ GameObject:
   - component: {fileID: 1060677543}
   - component: {fileID: 1060677542}
   - component: {fileID: 1060677541}
+  - component: {fileID: 1060677545}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -6443,6 +6644,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1215944748}
+        m_TargetAssemblyTypeName: DisplaySettingsController, Assembly-CSharp
+        m_MethodName: DiscardChanges
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 556093530}
         m_TargetAssemblyTypeName: MainMenuUI, Assembly-CSharp
         m_MethodName: CloseSettings
@@ -6493,6 +6706,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060677539}
   m_CullTransparentMesh: 1
+--- !u!114 &1060677545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060677539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7caf75e4d6d65e47a002168ac7ee091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuButtonHoverEffect
+  targetText: {fileID: 1879348633}
+  hoverColor: {r: 1, g: 0.9, b: 0.55, a: 1}
+  hoverFontSizeIncrease: 5
 --- !u!1 &1062521276
 GameObject:
   m_ObjectHideFlags: 0
@@ -7011,7 +7239,7 @@ GameObject:
   - component: {fileID: 1167714625}
   - component: {fileID: 1167714624}
   m_Layer: 5
-  m_Name: SoundMinText
+  m_Name: SFXSoundMinText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7540,6 +7768,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1215944747}
+  - component: {fileID: 1215944748}
   m_Layer: 5
   m_Name: DisplayPanel
   m_TagString: Untagged
@@ -7570,6 +7799,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1215944748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215944746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3990831cfdbf746448a07c5f40cc93d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DisplaySettingsController
+  brightnessSlider: {fileID: 112355732}
+  brightnessValueText: {fileID: 146319250}
+  brightnessHandle: {fileID: 88710352}
+  masterVolumeSlider: {fileID: 1907029939}
+  masterVolumeValueText: {fileID: 742284205}
+  masterVolumeHandle: {fileID: 986747845}
+  bgmVolumeSlider: {fileID: 2067260594}
+  bgmVolumeValueText: {fileID: 216477221}
+  bgmVolumeHandle: {fileID: 357167047}
+  sfxVolumeSlider: {fileID: 1907259483}
+  sfxVolumeValueText: {fileID: 961969400}
+  sfxVolumeHandle: {fileID: 1898387796}
+  brightnessVolume: {fileID: 911040108}
+  minBrightness: -1.5
+  maxBrightness: 1.5
+  audioMixer: {fileID: 24100000, guid: a99b146a34bbf704197cfa88d0163a49, type: 2}
+  masterVolumeParameter: MasterVolume
+  bgmVolumeParameter: BGMVolume
+  sfxVolumeParameter: SFXVolume
 --- !u!1 &1253419413
 GameObject:
   m_ObjectHideFlags: 0
@@ -7596,7 +7856,7 @@ AudioSource:
   m_GameObject: {fileID: 1253419413}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -4138266399048460775, guid: a99b146a34bbf704197cfa88d0163a49, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 88b15ec98c4090746846f6370a083eac, type: 3}
   m_PlayOnAwake: 1
@@ -7923,7 +8183,7 @@ GameObject:
   - component: {fileID: 1297157821}
   - component: {fileID: 1297157820}
   m_Layer: 5
-  m_Name: SoundLabel
+  m_Name: BGMSoundLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8198,6 +8458,7 @@ GameObject:
   - component: {fileID: 1308259904}
   - component: {fileID: 1308259903}
   - component: {fileID: 1308259902}
+  - component: {fileID: 1308259906}
   m_Layer: 5
   m_Name: KeySettingButton
   m_TagString: Untagged
@@ -8339,6 +8600,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1308259900}
   m_CullTransparentMesh: 1
+--- !u!114 &1308259906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308259900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7caf75e4d6d65e47a002168ac7ee091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuButtonHoverEffect
+  targetText: {fileID: 1262768120}
+  hoverColor: {r: 1, g: 0.9, b: 0.55, a: 1}
+  hoverFontSizeIncrease: 5
 --- !u!1 &1335258095
 GameObject:
   m_ObjectHideFlags: 0
@@ -8352,6 +8628,7 @@ GameObject:
   - component: {fileID: 1335258099}
   - component: {fileID: 1335258098}
   - component: {fileID: 1335258097}
+  - component: {fileID: 1335258101}
   m_Layer: 5
   m_Name: ResetGameButton
   m_TagString: Untagged
@@ -8481,6 +8758,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1335258095}
   m_CullTransparentMesh: 1
+--- !u!114 &1335258101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335258095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7caf75e4d6d65e47a002168ac7ee091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuButtonHoverEffect
+  targetText: {fileID: 1207699729}
+  hoverColor: {r: 1, g: 0.9, b: 0.55, a: 1}
+  hoverFontSizeIncrease: 5
 --- !u!1 &1402323210
 GameObject:
   m_ObjectHideFlags: 0
@@ -9375,7 +9667,7 @@ GameObject:
   - component: {fileID: 1683826582}
   - component: {fileID: 1683826581}
   m_Layer: 5
-  m_Name: SoundLabel
+  m_Name: SFXSoundLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9623,7 +9915,7 @@ GameObject:
   - component: {fileID: 1756023060}
   - component: {fileID: 1756023059}
   m_Layer: 5
-  m_Name: SoundLabel
+  m_Name: MasterSoundLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9864,7 +10156,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -10991,7 +11283,7 @@ GameObject:
   - component: {fileID: 1907029938}
   - component: {fileID: 1907029939}
   m_Layer: 5
-  m_Name: SoundSlider
+  m_Name: MasterSoundSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11064,9 +11356,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 986747845}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 0.8
+  m_MaxValue: 100
+  m_WholeNumbers: 1
+  m_Value: 80
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -11081,7 +11373,7 @@ GameObject:
   - component: {fileID: 1907259482}
   - component: {fileID: 1907259483}
   m_Layer: 5
-  m_Name: SoundSlider
+  m_Name: SFXSoundSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11154,9 +11446,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1898387796}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 0.8
+  m_MaxValue: 100
+  m_WholeNumbers: 1
+  m_Value: 80
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -11420,7 +11712,7 @@ GameObject:
   - component: {fileID: 2067260593}
   - component: {fileID: 2067260594}
   m_Layer: 5
-  m_Name: SoundSlider
+  m_Name: BGMSoundSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11493,9 +11785,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 357167047}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 0.8
+  m_MaxValue: 100
+  m_WholeNumbers: 1
+  m_Value: 80
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -11791,3 +12083,4 @@ SceneRoots:
   - {fileID: 125334755}
   - {fileID: 400055894}
   - {fileID: 1253419415}
+  - {fileID: 911040109}
