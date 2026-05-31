@@ -24,10 +24,12 @@ public class PlayerCombat : MonoBehaviour
     private void OnEnable()
     {
         if (attackAction != null) attackAction.action.Enable();
+        PlayerHealth.OnDeath += HandleDeath;
     }
     private void OnDisable()
     {
         if (attackAction != null) attackAction.action.Disable();
+        PlayerHealth.OnDeath -= HandleDeath;
     }
     private void Update()
     {
@@ -99,5 +101,9 @@ public class PlayerCombat : MonoBehaviour
     private Vector2 GetHitboxWorldPosition()
     {
         return transform.TransformPoint(attackData.hitboxOffset);
+    }
+    private void HandleDeath()
+    {
+        enabled = false;
     }
 }

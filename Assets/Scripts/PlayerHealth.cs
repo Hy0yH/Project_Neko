@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     // 플레이어의 최대 체력
     public int maxHealth { get; private set; } = 5;
+    private bool isDead = false;
 
     // 피격 시 무적
     private float invincibilityDuration = 1.5f; // 1.5초 동안 무적
@@ -28,6 +29,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     // 체력 변경 시 이벤트
     public event Action<int, int> OnHealthChanged;
+    public static event Action OnDeath;
 
     private void Awake()
     {
@@ -48,7 +50,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public void TakeDamage(int damageAmount)
     {
         // 이미 죽었거나 무적 타이머가 남아있으면
-        if (currentHealth <= 0 || invincibilityTimer > 0f) return;
+        if (isDead || invincibilityTimer > 0f) return;
 
         // 체력 감소
         currentHealth -= damageAmount;
@@ -78,8 +80,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void Die()
     {
+        if (isDead) return;
+        isDead = true;
         Debug.Log("Died");
         // 죽음 처리
+        OnDeath?.Invoke();
     }
 
     private void Update()
