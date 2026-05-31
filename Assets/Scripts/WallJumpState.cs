@@ -7,6 +7,9 @@ public class WallJumpState : PlayerState
 
     public override void Enter()
     {
+        // 효과음
+        player.playerAudio?.PlayJumpTakeoff();
+
         player.isWallJumping = true;
 
         // 애니메이션 시작

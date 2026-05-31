@@ -21,6 +21,9 @@ public class WallSlideState : PlayerState
             // 점프 애니메이션 종료
             if (player.anim != null) player.anim.SetBool("isJumping", false);
 
+            // 효과음
+            player.playerAudio.PlayJumpTakeoff();
+
             player.ChangeState(player.idleState);
             return;
         }

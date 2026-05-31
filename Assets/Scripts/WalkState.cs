@@ -6,6 +6,7 @@ public class WalkState : PlayerState
 
     public override void Enter()
     {
+        player.playerAudio?.StartWalkLoop();
     }
 
     public override void Update()
@@ -29,5 +30,10 @@ public class WalkState : PlayerState
         float targetVelocityX = player.moveInputX * player.maxMoveSpeed;
         player.rb.linearVelocityX = Mathf.MoveTowards(
             player.rb.linearVelocityX, targetVelocityX, player.acceleration * Time.fixedDeltaTime);
+    }
+
+    public override void Exit()
+    {
+        player.playerAudio?.StopWlakLoop();
     }
 }
