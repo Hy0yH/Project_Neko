@@ -28,12 +28,14 @@ public class PlayerInventory : MonoBehaviour
     {
         if (healAction != null) healAction.action.Enable();
         Enemy.OnEnemyDied += OnEnemyKilled;
+        PlayerHealth.OnDeath += HandleDeath;
     }
 
     private void OnDisable()
     {
         if (healAction != null) healAction.action.Disable();
         Enemy.OnEnemyDied -= OnEnemyKilled;
+        PlayerHealth.OnDeath -= HandleDeath;
     }
 
     private void Update()
@@ -64,5 +66,9 @@ public class PlayerInventory : MonoBehaviour
         }
         float progress = (float)killsTowardNextChuru / killsPerChuru;
         OnChuruChanged?.Invoke(churuCount, maxChuru, progress);
+    }
+    private void HandleDeath()
+    {
+        enabled = false;
     }
 }

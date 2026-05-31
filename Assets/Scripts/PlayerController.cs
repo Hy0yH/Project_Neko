@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     public JumpState jumpState;
     public WallSlideState wallSlideState;
     public WallJumpState wallJumpState;
+    public DeadState deadState;
 
     private void Awake()
     {
@@ -59,6 +60,7 @@ public class PlayerController : MonoBehaviour
         jumpState = new JumpState(this);
         wallSlideState = new WallSlideState(this);
         wallJumpState = new WallJumpState(this);
+        deadState = new DeadState(this);
 
         isWallJumping = false;
 
@@ -69,12 +71,14 @@ public class PlayerController : MonoBehaviour
     {
         if (moveAction != null) moveAction.action.Enable();
         if (jumpAction != null) jumpAction.action.Enable();
+        PlayerHealth.OnDeath += HandleDeath;
     }
 
     private void OnDisable()
     {
         if (moveAction != null) moveAction.action.Disable();
         if (jumpAction != null) jumpAction.action.Disable();
+        PlayerHealth.OnDeath -= HandleDeath;
     }
 
     private void Start()
@@ -91,30 +95,33 @@ public class PlayerController : MonoBehaviour
         // 벽 닿아있는지 판정
         isTouchingWall = Physics2D.OverlapCircle(wallCheck.position, wallCheckRadius, wallLayer) != null;
 
-        // 점프 입력 감지
-        if (jumpAction != null)
+        if (currentState != deadState)
         {
-            jumpInputTriggered = jumpAction.action.WasPressedThisFrame();
-            jumpHeld = jumpAction.action.IsPressed();
+            // 점프 입력 감지
+            if (jumpAction != null)
+            {
+                jumpInputTriggered = jumpAction.action.WasPressedThisFrame();
+                jumpHeld = jumpAction.action.IsPressed();
+            }
+
+            // 낙하 속도 측정
+            if (anim != null)
+                anim.SetFloat("velocityY", rb.linearVelocityY);
+
+            // 이동 입력 감지
+            if (moveAction != null)
+            {
+                moveInputX = moveAction.action.ReadValue<Vector2>().x;
+                if (anim != null && moveInputX != 0f)
+                    anim.SetBool("isWalking", true);
+                else if (moveInputX == 0f)
+                    anim.SetBool("isWalking", false);
+            }
+
+            // 이동 방향과 현재 바라보는 방향을 비교해서 뒤집기 판단
+            if (!isWallJumping)
+                HandleFlip();
         }
-
-        // 낙하 속도 측정
-        if (anim != null)
-            anim.SetFloat("velocityY", rb.linearVelocityY);
-
-        // 이동 입력 감지
-        if (moveAction != null)
-        {
-            moveInputX = moveAction.action.ReadValue<Vector2>().x;
-            if (anim != null && moveInputX != 0f)
-                anim.SetBool("isWalking", true);
-            else if (moveInputX == 0f)
-                anim.SetBool("isWalking", false);
-        }
-
-        // 이동 방향과 현재 바라보는 방향을 비교해서 뒤집기 판단
-        if(!isWallJumping)
-            HandleFlip();
 
         // 현재 상태의 Update 실행
         currentState?.Update();
@@ -159,5 +166,10 @@ public class PlayerController : MonoBehaviour
         if (!jumpInputTriggered) return false;
         jumpInputTriggered = false; // 점프 입력 소비
         return true;
+    }
+
+    private void HandleDeath()
+    {
+        ChangeState(deadState);
     }
 }
