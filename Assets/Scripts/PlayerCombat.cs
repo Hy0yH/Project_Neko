@@ -6,6 +6,7 @@ public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] private PlayerAttackSO attackData;
     [SerializeField] private InputActionReference attackAction;
+    private PlayerAudio playerAudio;
     private Animator anim;
     private enum AttackPhase { Idle, Startup, Active, Recovery }
     private AttackPhase currentPhase;
@@ -17,6 +18,8 @@ public class PlayerCombat : MonoBehaviour
         anim = GetComponent<Animator>();
 
         if (attackData == null) Debug.LogError("AttackSO is not assigned", this);
+
+        playerAudio = GetComponent<PlayerAudio>();
     }
     private void OnEnable()
     {
@@ -66,6 +69,10 @@ public class PlayerCombat : MonoBehaviour
         currentPhase = AttackPhase.Startup;
         stateTimer = attackData.startupTime;
         anim.SetTrigger(attackData.animatorTrigger);
+
+        // 효과음
+        playerAudio?.PlayScratch();
+
         Debug.Log("Attack start");
     }
     private void CheckHitbox()

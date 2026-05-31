@@ -14,7 +14,11 @@ public class JumpState : PlayerState
 
         // 땅에 있을 때만(벽점프시 성립 x)
         if (player.isGrounded)
+        {
             player.rb.linearVelocityY = player.maxJumpForce;
+            // 효과음
+            player.playerAudio?.PlayJumpTakeoff();
+        }
     }
     public override void Update()
     {
@@ -32,6 +36,9 @@ public class JumpState : PlayerState
 
             // 점프 애니메이션 종료
             if (player.anim != null) player.anim.SetBool("isJumping", false);
+
+            // 효과음
+            player.playerAudio.PlayJumpTakeoff();
 
             if (Mathf.Abs(player.moveInputX) > 0.01f) player.ChangeState(player.walkState);
             else player.ChangeState(player.idleState);

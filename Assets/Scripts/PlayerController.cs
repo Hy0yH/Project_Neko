@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float wallCheckRadius = 0.2f; // 벽 체크 반경
     public LayerMask wallLayer; // 벽 레이어
 
-    public float wallSlideSpeed = 2f; // 벽 타는 속도
+    public float wallSlideSpeed = 3f; // 벽 타는 속도
 
     // 다른 상태 클래스에서 접근해야 하므로 public & [HideInInspector]로 선언
     [HideInInspector] public Rigidbody2D rb;
@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool isTouchingWall;
     [HideInInspector] public bool isWallJumping;
     [HideInInspector] public int facingDirection = 1; // 1은 오른쪽, -1은 왼쪽을 보고 있는 상태
+    [HideInInspector] public PlayerAudio playerAudio;
 
     // --- FSM 구조 ---
     private PlayerState currentState;
@@ -60,6 +61,8 @@ public class PlayerController : MonoBehaviour
         wallJumpState = new WallJumpState(this);
 
         isWallJumping = false;
+
+        playerAudio = GetComponent<PlayerAudio>();
     }
 
     private void OnEnable()

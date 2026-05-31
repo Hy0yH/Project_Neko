@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections;
-using System.Runtime.CompilerServices;
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
@@ -21,6 +20,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private Coroutine blinkCoroutine;
     [SerializeField] private CinemachineImpulseSource impulseSource;
 
+    // 오디오
+    private PlayerAudio playerAudio;
+
     // 플레이어의 현재 체력 (get은 외부에서 읽을 수 있지만, set은 private으로 설정하여 외부에서 직접 변경할 수 없도록 함)
     public int currentHealth { get; private set; }
 
@@ -31,6 +33,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer != null) originalColor = spriteRenderer.color;
+        playerAudio = GetComponent<PlayerAudio>();
     }
     private void Start()
     {
@@ -51,10 +54,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         currentHealth -= damageAmount;
         Debug.Log($"damage : {damageAmount}, currentHP : {currentHealth}");
 
-        if(currentHealth <= 0)
-        {
-            Die();
-        }
+        // 카메라 흔들림
+        impulseSource?.GenerateImpulse();
+
+        // 피격 효과음
+        playerAudio?.PlayHurt();
 
         // 무적 타이머 시작
         invincibilityTimer = invincibilityDuration;
@@ -62,12 +66,14 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         // 체력 변경 이벤트 호출
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
 
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+
         // 색 변경을 통한 깜빡임 표현
         if (blinkCoroutine != null) StopCoroutine(blinkCoroutine);
         blinkCoroutine = StartCoroutine(InvincibilityBlink());
-
-        // 카메라 흔들림
-        impulseSource?.GenerateImpulse();
     }
 
     private void Die()
