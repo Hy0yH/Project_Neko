@@ -21,7 +21,7 @@ public class PlayerInventory : MonoBehaviour
     {
         churuCount = maxChuru;
         killsTowardNextChuru = 0;
-        OnChuruChanged(churuCount, maxChuru, 0f);
+        OnChuruChanged?.Invoke(churuCount, maxChuru, 0f);
     }
 
     private void OnEnable()

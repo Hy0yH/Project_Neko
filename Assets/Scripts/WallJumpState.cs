@@ -12,9 +12,6 @@ public class WallJumpState : PlayerState
 
         player.isWallJumping = true;
 
-        // 애니메이션 시작
-        player.anim.SetBool("isWalking", true);
-
         // 타이머 시작
         lockTimer = player.wallJumpInputLockTime;
 

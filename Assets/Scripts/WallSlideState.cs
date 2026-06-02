@@ -22,7 +22,7 @@ public class WallSlideState : PlayerState
             if (player.anim != null) player.anim.SetBool("isJumping", false);
 
             // 효과음
-            player.playerAudio.PlayJumpTakeoff();
+            player.playerAudio.PlayJumpLand();
 
             player.ChangeState(player.idleState);
             return;

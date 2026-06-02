@@ -38,7 +38,7 @@ public class JumpState : PlayerState
             if (player.anim != null) player.anim.SetBool("isJumping", false);
 
             // 효과음
-            player.playerAudio.PlayJumpTakeoff();
+            player.playerAudio.PlayJumpLand();
 
             if (Mathf.Abs(player.moveInputX) > 0.01f) player.ChangeState(player.walkState);
             else player.ChangeState(player.idleState);
