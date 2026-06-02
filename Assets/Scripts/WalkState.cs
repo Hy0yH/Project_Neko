@@ -34,6 +34,6 @@ public class WalkState : PlayerState
 
     public override void Exit()
     {
-        player.playerAudio?.StopWlakLoop();
+        player.playerAudio?.StopWalkLoop();
     }
 }

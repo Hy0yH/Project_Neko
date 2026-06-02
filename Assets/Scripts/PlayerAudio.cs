@@ -50,7 +50,7 @@ public class PlayerAudio : MonoBehaviour
         loopSource.loop = true;
         loopSource.Play();
     }
-    public void StopWlakLoop()
+    public void StopWalkLoop()
     {
         if (loopSource.clip == walkClip)
             loopSource.Stop();
