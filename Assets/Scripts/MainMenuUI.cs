@@ -5,7 +5,7 @@ public class MainMenuUI : MonoBehaviour
 {
     [SerializeField] private GameObject mainPanel;
     [SerializeField] private GameObject settingsPanel;
-    [SerializeField] private string startSceneName = "test";
+    [SerializeField] private string startSceneName = "UndergroundStage";
 
     void Start()
     {
@@ -31,6 +31,16 @@ public class MainMenuUI : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("test");
+        SceneManager.LoadScene("UndergroundStage");
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+    }
+
 }
