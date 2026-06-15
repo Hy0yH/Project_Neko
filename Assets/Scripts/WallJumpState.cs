@@ -30,13 +30,11 @@ public class WallJumpState : PlayerState
         // 타이머가 끝나면 입력 잠금 해제
         if (lockTimer <= 0f)
         {
-            player.isWallJumping = false;
             player.ChangeState(player.jumpState);
         }
     }
 
     public override void Exit()
     {
-        player.isWallJumping = false;
     }
 }

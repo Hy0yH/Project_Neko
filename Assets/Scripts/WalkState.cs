@@ -12,7 +12,7 @@ public class WalkState : PlayerState
     public override void Update()
     {
         // 점프 입력이 감지되고 땅에 닿아있다면 점프 상태로 전환
-        if (player.isGrounded && player.ConsumeJump())
+        if ((player.isGrounded && player.ConsumeJump()) || !player.isGrounded)
         {
             player.ChangeState(player.jumpState);
             return;
