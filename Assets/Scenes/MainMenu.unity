@@ -680,6 +680,11 @@ MonoBehaviour:
   targetText: {fileID: 1308144926}
   hoverColor: {r: 1, g: 0.9, b: 0.55, a: 1}
   hoverFontSizeIncrease: 5
+  hoverAudioSource: {fileID: 999250784}
+  hoverSound: {fileID: 8300000, guid: 22ad8403b30dcac4d945c3c1a3f405bd, type: 3}
+  clickSound: {fileID: 8300000, guid: 327852a98793bdc4e9fa65e7688dadca, type: 3}
+  hoverSoundVolume: 1
+  clickSoundVolume: 1
 --- !u!1 &57126864
 GameObject:
   m_ObjectHideFlags: 0
@@ -2559,6 +2564,11 @@ MonoBehaviour:
   targetText: {fileID: 1813300935}
   hoverColor: {r: 1, g: 0.9, b: 0.55, a: 1}
   hoverFontSizeIncrease: 5
+  hoverAudioSource: {fileID: 999250784}
+  hoverSound: {fileID: 8300000, guid: 22ad8403b30dcac4d945c3c1a3f405bd, type: 3}
+  clickSound: {fileID: 8300000, guid: 327852a98793bdc4e9fa65e7688dadca, type: 3}
+  hoverSoundVolume: 1
+  clickSoundVolume: 1
 --- !u!1 &330554863
 GameObject:
   m_ObjectHideFlags: 0
@@ -2729,6 +2739,11 @@ MonoBehaviour:
   targetText: {fileID: 83158455}
   hoverColor: {r: 1, g: 0.9, b: 0.55, a: 1}
   hoverFontSizeIncrease: 5
+  hoverAudioSource: {fileID: 999250784}
+  hoverSound: {fileID: 8300000, guid: 7a3b36eb6fad6664590c52ad2f9b5cff, type: 3}
+  clickSound: {fileID: 8300000, guid: 327852a98793bdc4e9fa65e7688dadca, type: 3}
+  hoverSoundVolume: 1
+  clickSoundVolume: 1
 --- !u!1 &338438897
 GameObject:
   m_ObjectHideFlags: 0
@@ -3248,6 +3263,11 @@ MonoBehaviour:
   targetText: {fileID: 1785314047}
   hoverColor: {r: 1, g: 0.9, b: 0.55, a: 1}
   hoverFontSizeIncrease: 5
+  hoverAudioSource: {fileID: 999250784}
+  hoverSound: {fileID: 8300000, guid: 22ad8403b30dcac4d945c3c1a3f405bd, type: 3}
+  clickSound: {fileID: 8300000, guid: 327852a98793bdc4e9fa65e7688dadca, type: 3}
+  hoverSoundVolume: 1
+  clickSoundVolume: 1
 --- !u!1 &400055890
 GameObject:
   m_ObjectHideFlags: 0
@@ -4148,6 +4168,11 @@ MonoBehaviour:
   targetText: {fileID: 1406450165}
   hoverColor: {r: 1, g: 0.9, b: 0.55, a: 1}
   hoverFontSizeIncrease: 5
+  hoverAudioSource: {fileID: 999250784}
+  hoverSound: {fileID: 8300000, guid: b07f7c2e8a0db4144892af99ddb740c6, type: 3}
+  clickSound: {fileID: 8300000, guid: 327852a98793bdc4e9fa65e7688dadca, type: 3}
+  hoverSoundVolume: 1
+  clickSoundVolume: 1
 --- !u!1 &724594823
 GameObject:
   m_ObjectHideFlags: 0
@@ -6026,6 +6051,135 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 986747844}
   m_CullTransparentMesh: 1
+--- !u!1 &999250783
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 999250785}
+  - component: {fileID: 999250784}
+  m_Layer: 0
+  m_Name: UIAudioPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &999250784
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999250783}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 5738040816285710966, guid: a99b146a34bbf704197cfa88d0163a49, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &999250785
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999250783}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &999659708
 GameObject:
   m_ObjectHideFlags: 0
@@ -6184,6 +6338,11 @@ MonoBehaviour:
   targetText: {fileID: 1552640955}
   hoverColor: {r: 1, g: 0.9, b: 0.55, a: 1}
   hoverFontSizeIncrease: 5
+  hoverAudioSource: {fileID: 999250784}
+  hoverSound: {fileID: 8300000, guid: 461955231b3644e41851d51f294df149, type: 3}
+  clickSound: {fileID: 8300000, guid: 327852a98793bdc4e9fa65e7688dadca, type: 3}
+  hoverSoundVolume: 1
+  clickSoundVolume: 1
 --- !u!1 &1025641700
 GameObject:
   m_ObjectHideFlags: 0
@@ -6430,6 +6589,11 @@ MonoBehaviour:
   targetText: {fileID: 1201209962}
   hoverColor: {r: 1, g: 0.9, b: 0.55, a: 1}
   hoverFontSizeIncrease: 5
+  hoverAudioSource: {fileID: 999250784}
+  hoverSound: {fileID: 8300000, guid: 22ad8403b30dcac4d945c3c1a3f405bd, type: 3}
+  clickSound: {fileID: 8300000, guid: 327852a98793bdc4e9fa65e7688dadca, type: 3}
+  hoverSoundVolume: 1
+  clickSoundVolume: 1
 --- !u!1 &1055852832
 GameObject:
   m_ObjectHideFlags: 0
@@ -6733,6 +6897,11 @@ MonoBehaviour:
   targetText: {fileID: 1879348633}
   hoverColor: {r: 1, g: 0.9, b: 0.55, a: 1}
   hoverFontSizeIncrease: 5
+  hoverAudioSource: {fileID: 999250784}
+  hoverSound: {fileID: 8300000, guid: 22ad8403b30dcac4d945c3c1a3f405bd, type: 3}
+  clickSound: {fileID: 8300000, guid: 327852a98793bdc4e9fa65e7688dadca, type: 3}
+  hoverSoundVolume: 1
+  clickSoundVolume: 1
 --- !u!1 &1062521276
 GameObject:
   m_ObjectHideFlags: 0
@@ -8627,6 +8796,11 @@ MonoBehaviour:
   targetText: {fileID: 1262768120}
   hoverColor: {r: 1, g: 0.9, b: 0.55, a: 1}
   hoverFontSizeIncrease: 5
+  hoverAudioSource: {fileID: 999250784}
+  hoverSound: {fileID: 8300000, guid: 22ad8403b30dcac4d945c3c1a3f405bd, type: 3}
+  clickSound: {fileID: 8300000, guid: 327852a98793bdc4e9fa65e7688dadca, type: 3}
+  hoverSoundVolume: 1
+  clickSoundVolume: 1
 --- !u!1 &1335258095
 GameObject:
   m_ObjectHideFlags: 0
@@ -8785,6 +8959,11 @@ MonoBehaviour:
   targetText: {fileID: 1207699729}
   hoverColor: {r: 1, g: 0.9, b: 0.55, a: 1}
   hoverFontSizeIncrease: 5
+  hoverAudioSource: {fileID: 999250784}
+  hoverSound: {fileID: 8300000, guid: 22ad8403b30dcac4d945c3c1a3f405bd, type: 3}
+  clickSound: {fileID: 8300000, guid: 327852a98793bdc4e9fa65e7688dadca, type: 3}
+  hoverSoundVolume: 1
+  clickSoundVolume: 1
 --- !u!1 &1402323210
 GameObject:
   m_ObjectHideFlags: 0
@@ -12096,3 +12275,4 @@ SceneRoots:
   - {fileID: 400055894}
   - {fileID: 1253419415}
   - {fileID: 911040109}
+  - {fileID: 999250785}

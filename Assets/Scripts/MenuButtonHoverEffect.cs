@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 
 
-public class MenuButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class MenuButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] private TMP_Text targetText;
 
@@ -13,6 +13,15 @@ public class MenuButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPoint
 
     [Header("Font Size")]
     [SerializeField] private float hoverFontSizeIncrease = 5f;
+
+    [Header("Sound")]
+    [SerializeField] private AudioSource hoverAudioSource;
+    [SerializeField] private AudioClip hoverSound;
+    [SerializeField] private AudioClip clickSound;
+    [SerializeField] private float hoverSoundVolume;
+    [SerializeField] private float clickSoundVolume;
+    [SerializeField] private float hoverSoundCooldown = 0.1f;
+    private static float lastHoverSoundTime = float.NegativeInfinity;
 
     private Color baseColor;
     private float originalFontSize;
@@ -54,6 +63,38 @@ public class MenuButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPoint
 
         targetText.color = hoverColor;
         targetText.fontSize = originalFontSize + hoverFontSizeIncrease;
+
+        PlayHoverSound();
+    }
+
+    public void PlayHoverSound()
+    {
+        if (hoverAudioSource == null || hoverSound == null)
+        {
+            return;
+        }
+        if (Time.unscaledTime - lastHoverSoundTime < hoverSoundCooldown)
+        {
+            return;
+        }
+        
+        lastHoverSoundTime = Time.unscaledTime;
+        hoverAudioSource.PlayOneShot(hoverSound, hoverSoundVolume);
+    }
+
+    public void PlayClickSound()
+    {
+        if (hoverAudioSource == null || clickSound == null)
+        {
+            return;
+        }
+
+        hoverAudioSource.PlayOneShot(clickSound, clickSoundVolume);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        PlayClickSound();
     }
 
     public void OnPointerExit(PointerEventData eventData)
