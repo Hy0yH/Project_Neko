@@ -39,6 +39,10 @@ public class Enemy : MonoBehaviour, IDamageable
 
     [SerializeField] private float hitFalshDuration = 0.1f; //피격 시 깜빡이는 시간
     [SerializeField] private Material hitFlashMaterial; //피격 시 사용할 머티리얼
+
+    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioClip hitClip;
+
     private SpriteRenderer spriteRenderer;
     private Material originalMaterial; //원래 머티리얼을 저장할 변수
     private Coroutine hitFlashCoroutine;
@@ -101,6 +105,11 @@ public class Enemy : MonoBehaviour, IDamageable
         if (isEnemyDead) return;
 
         health -= damage;
+
+        if (sfxSource != null && hitClip != null)
+        {
+            sfxSource.PlayOneShot(hitClip);
+        }
 
         if (hitFlashCoroutine != null)
         {
