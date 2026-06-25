@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac59f6f04aae6e47ade8dde71fa2e36, type: 3}
+  m_Name: BipedalForm
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerFormSO
+  formName: Bipedal
+  maxMoveSpeed: 3
+  animatorController: {fileID: 9100000, guid: fa0ad96054dc1744292caa84fee0a790, type: 2}
+  basicAttack: {fileID: 11400000, guid: 530346d659bfb6741a02ec9000d19317, type: 2}
+  chargeAttack: {fileID: 11400000, guid: 9f92ca05c816ee44fa3d14590112b091, type: 2}
+  colliderSize: {x: 0.6, y: 1.2}
+  colliderOffset: {x: -0.1, y: 0.6}

@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool isWallJumping;
     [HideInInspector] public int facingDirection = 1; // 1은 오른쪽, -1은 왼쪽을 보고 있는 상태
     [HideInInspector] public PlayerAudio playerAudio;
+    [HideInInspector] public PlayerForm playerForm;
 
     // --- FSM 구조 ---
     private PlayerState currentState;
@@ -65,6 +66,7 @@ public class PlayerController : MonoBehaviour
         isWallJumping = false;
 
         playerAudio = GetComponent<PlayerAudio>();
+        playerForm = GetComponent<PlayerForm>();
     }
 
     private void OnEnable()

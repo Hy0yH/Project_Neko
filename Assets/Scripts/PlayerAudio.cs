@@ -41,6 +41,10 @@ public class PlayerAudio : MonoBehaviour
     {
         sfxSource.PlayOneShot(scratchClip);
     }
+    public void PlayFormChange()
+    {
+        sfxSource.PlayOneShot(formChangeClip);
+    }
     public void StartWalkLoop()
     {
         // 이미 재생 중이면 재시작 안함
