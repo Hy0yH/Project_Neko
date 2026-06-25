@@ -7,7 +7,7 @@ public class WallSlideState : PlayerState
     public override void Update()
     {
         // 점프 입력이 감지되면 wallJumpState로 전환
-        if (player.ConsumeJump())
+        if (!player.playerForm.IsTransforming && player.ConsumeJump())
         {
             player.ChangeState(player.wallJumpState);
             return;

@@ -10,6 +10,7 @@ public class PlayerAttackSO : ScriptableObject
     public float startupTime = 0.1f; // 모션 시작 ~ 판정 발생
     public float activeTime = 0.1f; // 히트박스 활성
     public float recoveryTime = 0.2f; // 판정 끝 ~ 다음 공격 가능
+    public float chargeThreshold;
     // 총 쿨다운 = startup + active + recovery
 
     [Header("Hitbox")]

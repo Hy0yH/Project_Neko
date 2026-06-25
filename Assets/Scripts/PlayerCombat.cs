@@ -4,20 +4,20 @@ using UnityEngine.InputSystem;
 
 public class PlayerCombat : MonoBehaviour
 {
-    [SerializeField] private PlayerAttackSO attackData;
+    [SerializeField] private PlayerForm playerForm;
+    private PlayerAttackSO currentAttack;
     [SerializeField] private InputActionReference attackAction;
     private PlayerAudio playerAudio;
     private Animator anim;
-    private enum AttackPhase { Idle, Startup, Active, Recovery }
+    private enum AttackPhase { Idle, Charging, Startup, Active, Recovery }
     private AttackPhase currentPhase;
     private float stateTimer;
+    private float chargeTimer;
     private HashSet<Collider2D> colliders = new HashSet<Collider2D>();
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
-
-        if (attackData == null) Debug.LogError("AttackSO is not assigned", this);
 
         playerAudio = GetComponent<PlayerAudio>();
     }
@@ -33,15 +33,30 @@ public class PlayerCombat : MonoBehaviour
     }
     private void Update()
     {
+        if (playerForm.IsTransforming) return;
         // 공격 입력 감지
         if (attackAction != null && attackAction.action.WasPressedThisFrame())
         {
             if(currentPhase == AttackPhase.Idle)
             {
-                StartAttack();
+                if (playerForm.CurrentForm.chargeAttack == null)
+                    StartAttack(playerForm.CurrentForm.basicAttack);
+                else
+                    EnterCharging();
             }
         }
-        if(currentPhase != AttackPhase.Idle)
+        if(currentPhase == AttackPhase.Charging)
+        {
+            chargeTimer += Time.deltaTime;
+            if(attackAction.action.WasReleasedThisFrame())
+            {
+                if(chargeTimer >= playerForm.CurrentForm.chargeAttack.chargeThreshold)
+                    StartAttack(playerForm.CurrentForm.chargeAttack);
+                else
+                    StartAttack(playerForm.CurrentForm.basicAttack);
+            }
+        }
+        else if(currentPhase != AttackPhase.Idle)
         {
             stateTimer -= Time.deltaTime;
             if(stateTimer <= 0f)
@@ -50,11 +65,11 @@ public class PlayerCombat : MonoBehaviour
                 {
                     case AttackPhase.Startup:
                         currentPhase = AttackPhase.Active;
-                        stateTimer = attackData.activeTime;
+                        stateTimer = currentAttack.activeTime;
                         break;
                     case AttackPhase.Active:
                         currentPhase = AttackPhase.Recovery;
-                        stateTimer = attackData.recoveryTime;
+                        stateTimer = currentAttack.recoveryTime;
                         break;
                     case AttackPhase.Recovery:
                         currentPhase = AttackPhase.Idle;
@@ -65,45 +80,56 @@ public class PlayerCombat : MonoBehaviour
         }
         if (currentPhase == AttackPhase.Active) CheckHitbox();
     }
-    private void StartAttack()
+    private void StartAttack(PlayerAttackSO pASO)
     {
         colliders.Clear();
+        currentAttack = pASO;
         currentPhase = AttackPhase.Startup;
-        stateTimer = attackData.startupTime;
-        anim.SetTrigger(attackData.animatorTrigger);
+        stateTimer = currentAttack.startupTime;
+        anim.SetTrigger(currentAttack.animatorTrigger);
 
         // 효과음
         playerAudio?.PlayScratch();
 
-        Debug.Log("Attack start");
+        Debug.Log($"Attack start {currentPhase}, {stateTimer}");
     }
     private void CheckHitbox()
     {
         Vector2 pos = GetHitboxWorldPosition();
-        Collider2D[] cols = Physics2D.OverlapBoxAll(pos, attackData.hitboxSize, 0f, attackData.hitLayers);
+        Collider2D[] cols = Physics2D.OverlapBoxAll(pos, currentAttack.hitboxSize, 0f, currentAttack.hitLayers);
         foreach(var col in cols)
         {
             if (colliders.Add(col))
             {
                 IDamageable damageable = col.GetComponent<IDamageable>();
-                damageable?.TakeDamage(attackData.damage);
-                Debug.Log($"Hit {col.name} for {attackData.damage} damage");
+                damageable?.TakeDamage(currentAttack.damage);
+                Debug.Log($"Hit {col.name} for {currentAttack.damage} damage");
             }
         }
     }
     private void OnDrawGizmosSelected()
     {
-        if (attackData == null) return;
+        if (currentAttack == null) return;
         Gizmos.color = currentPhase == AttackPhase.Active ? Color.red : Color.yellow;
         Vector2 pos = GetHitboxWorldPosition();
-        Gizmos.DrawWireCube(pos, attackData.hitboxSize);
+        Gizmos.DrawWireCube(pos, currentAttack.hitboxSize);
     }
     private Vector2 GetHitboxWorldPosition()
     {
-        return transform.TransformPoint(attackData.hitboxOffset);
+        return transform.TransformPoint(currentAttack.hitboxOffset);
     }
     private void HandleDeath()
     {
         enabled = false;
+    }
+    private void EnterCharging()
+    {
+        chargeTimer = 0f;
+        currentPhase = AttackPhase.Charging;
+        anim.SetTrigger("AttackReady");
+    }
+    public void OnTransformEnd()
+    {
+        currentPhase = AttackPhase.Idle;
     }
 }
