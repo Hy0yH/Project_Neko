@@ -16,9 +16,12 @@ MonoBehaviour:
   startupTime: 0.3
   activeTime: 0.3
   recoveryTime: 0.01
+  chargeThreshold: 0
   hitboxOffset: {x: 0.8, y: 0.5}
   hitboxSize: {x: 1, y: 1}
   hitLayers:
     serializedVersion: 2
     m_Bits: 256
   animatorTrigger: Attack
+  hitEffectPrefab: {fileID: 4256369060831622992, guid: 42cd8bf7cd769054b9373a85b24523f6, type: 3}
+  effectOffset: {x: 1, y: 1}
