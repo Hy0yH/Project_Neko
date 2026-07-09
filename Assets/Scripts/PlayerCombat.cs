@@ -66,6 +66,14 @@ public class PlayerCombat : MonoBehaviour
                     case AttackPhase.Startup:
                         currentPhase = AttackPhase.Active;
                         stateTimer = currentAttack.activeTime;
+
+                        // 이펙트
+                        Vector2 pos = GetHitboxWorldPosition();
+                        if (currentAttack.hitEffectPrefab != null)
+                        {
+                            GameObject fx = Instantiate(currentAttack.hitEffectPrefab, transform);
+                            fx.transform.localPosition = currentAttack.effectOffset;
+                        }
                         break;
                     case AttackPhase.Active:
                         currentPhase = AttackPhase.Recovery;

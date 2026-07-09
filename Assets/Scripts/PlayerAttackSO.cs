@@ -21,4 +21,7 @@ public class PlayerAttackSO : ScriptableObject
     [Header("Animation")]
     public string animatorTrigger = "Attack";
 
+    [Header("Effect")]
+    public GameObject hitEffectPrefab;
+    public Vector2 effectOffset;
 }
