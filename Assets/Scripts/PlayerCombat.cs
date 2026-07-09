@@ -15,6 +15,9 @@ public class PlayerCombat : MonoBehaviour
     private float chargeTimer;
     private HashSet<Collider2D> colliders = new HashSet<Collider2D>();
 
+    [SerializeField] private GameObject chargeStartAura;
+    [SerializeField] private GameObject chargeCompleteAura;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -48,8 +51,15 @@ public class PlayerCombat : MonoBehaviour
         if(currentPhase == AttackPhase.Charging)
         {
             chargeTimer += Time.deltaTime;
+
+            // 오라 완료 전환
+            bool isComplete = chargeTimer >= playerForm.CurrentForm.chargeAttack.chargeThreshold;
+            chargeStartAura.SetActive(!isComplete);
+            chargeCompleteAura.SetActive(isComplete);
+
             if(attackAction.action.WasReleasedThisFrame())
             {
+                StopChargeEffect();
                 if(chargeTimer >= playerForm.CurrentForm.chargeAttack.chargeThreshold)
                     StartAttack(playerForm.CurrentForm.chargeAttack);
                 else
@@ -139,5 +149,10 @@ public class PlayerCombat : MonoBehaviour
     public void OnTransformEnd()
     {
         currentPhase = AttackPhase.Idle;
+    }
+    private void StopChargeEffect()
+    {
+        chargeCompleteAura.SetActive(false);
+        chargeStartAura.SetActive(false);
     }
 }
