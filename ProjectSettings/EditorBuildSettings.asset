@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UndergroundStage.unity
     guid: a1d74ee467fe302438ab7e8c6539d4c4
+  - enabled: 1
+    path: Assets/Scenes/Villa.unity
+    guid: 7d3ffa07f81cde24196c8bc285473ae6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 1fd6d7089a041254aa9e192c8ef7ccb4, type: 3}
   m_UseUCBPForAssetBundles: 0
