@@ -23,3 +23,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   animatorTrigger: WeakAttack
+  hitEffectPrefab: {fileID: 1647926534745603765, guid: 559971de28a41544c934e6410660bb2c, type: 3}
+  effectOffset: {x: 0.8, y: 0}
