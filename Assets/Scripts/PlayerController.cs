@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float maxJumpForce = 3f; // 최대 점프 힘
     public Vector2 wallJumpForce = new Vector2(2f, 3f); // 벽 점프 시 가해지는 힘 (X, Y)
     public float wallJumpInputLockTime = 0.3f; // 벽 점프 후 입력 잠금 시간
+    public float maxFallSpeed = 20f;
 
     [Header("Input")]
     public InputActionReference moveAction; // Input System에서 설정한 액션 연결
@@ -133,6 +134,10 @@ public class PlayerController : MonoBehaviour
     {
         // 현재 상태의 물리 연산 실행
         currentState?.FixedUpdate();
+
+        // 최대 낙하 속도 설정
+        if (rb.linearVelocityY < -maxFallSpeed)
+            rb.linearVelocityY = -maxFallSpeed;
     }
 
     public void ChangeState(PlayerState newState)
