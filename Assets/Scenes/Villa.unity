@@ -759,6 +759,7 @@ MonoBehaviour:
   maxJumpForce: 8
   wallJumpForce: {x: 4, y: 5}
   wallJumpInputLockTime: 0.3
+  maxFallSpeed: 20
   moveAction: {fileID: 1812239802568077228, guid: 1fd6d7089a041254aa9e192c8ef7ccb4, type: 3}
   jumpAction: {fileID: 4805157665521473676, guid: 1fd6d7089a041254aa9e192c8ef7ccb4, type: 3}
   groundCheck: {fileID: 1366048254}
