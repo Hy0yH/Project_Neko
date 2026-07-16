@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: cd4e8c8aecd423242a1847627b740df3
+guid: 8e3f85e349985134e813b1f67becfaf6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -833619706210290583
-    second: "\uBC15\uC2A4_1_0"
+      213: 8162030086664535630
+    second: HP_5_0
+  - first:
+      213: -6754313655769317785
+    second: HP_5_1
+  - first:
+      213: -1836897253227666426
+    second: HP_5_2
+  - first:
+      213: 292969557980429686
+    second: HP_5_3
+  - first:
+      213: 2765415962600375238
+    second: HP_5_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +58,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,13 +112,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uBC15\uC2A4_1_0"
+      name: HP_5_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 68
-        height: 29
+        width: 15
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +127,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 964f19d3b436e64f0800000000000000
-      internalID: -833619706210290583
+      spriteID: e4eb0b99e1b554170800000000000000
+      internalID: 8162030086664535630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HP_5_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76ebc46148bd342a0800000000000000
+      internalID: -6754313655769317785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HP_5_2
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 0
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60469743ea70286e0800000000000000
+      internalID: -1836897253227666426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HP_5_3
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 0
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67d3d61c246d01400800000000000000
+      internalID: 292969557980429686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HP_5_4
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 0
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c38dfa8a2bb06620800000000000000
+      internalID: 2765415962600375238
       vertices: []
       indices: 
       edges: []
@@ -125,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\uBC15\uC2A4_1_0": -833619706210290583
+      HP_5_0: 8162030086664535630
+      HP_5_1: -6754313655769317785
+      HP_5_2: -1836897253227666426
+      HP_5_3: 292969557980429686
+      HP_5_4: 2765415962600375238
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -15,13 +15,13 @@ public class PlayerInventory : MonoBehaviour
     private int churuCount;
     private int killsTowardNextChuru;
 
-    public event Action<int, int, float> OnChuruChanged;
+    public event Action<int, int, int> OnChuruChanged;
 
     private void Start()
     {
         churuCount = maxChuru;
         killsTowardNextChuru = 0;
-        OnChuruChanged?.Invoke(churuCount, maxChuru, 0f);
+        OnChuruChanged?.Invoke(churuCount, maxChuru, killsTowardNextChuru);
     }
 
     private void OnEnable()
@@ -51,8 +51,7 @@ public class PlayerInventory : MonoBehaviour
         if (churuCount == 0) return;
         if(!playerHealth.Heal(healAmount)) return;
         churuCount--;
-        float progress = (float)killsTowardNextChuru / killsPerChuru;
-        OnChuruChanged?.Invoke(churuCount, maxChuru, progress);
+        OnChuruChanged?.Invoke(churuCount, maxChuru, killsTowardNextChuru);
     }
 
     private void OnEnemyKilled(Enemy enemy)
@@ -64,8 +63,7 @@ public class PlayerInventory : MonoBehaviour
             churuCount++;
             killsTowardNextChuru = 0;
         }
-        float progress = (float)killsTowardNextChuru / killsPerChuru;
-        OnChuruChanged?.Invoke(churuCount, maxChuru, progress);
+        OnChuruChanged?.Invoke(churuCount, maxChuru, killsTowardNextChuru);
     }
     private void HandleDeath()
     {

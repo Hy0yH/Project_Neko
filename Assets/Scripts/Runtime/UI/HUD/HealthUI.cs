@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthUI : MonoBehaviour
 {
     [SerializeField] private PlayerHealth playerHealth;
-    [SerializeField] private GameObject[] hpFills;
+    [SerializeField] private Image healthImage;
+    [SerializeField] private Sprite[] hpSprites;
 
     private void OnEnable()
     {
@@ -12,7 +14,7 @@ public class HealthUI : MonoBehaviour
         playerHealth.OnHealthChanged += UpdateUI; // 이벤트 구독
 
         // 현재 HP 직접 읽어서 한번 갱신
-        UpdateUI(playerHealth.currentHealth, hpFills.Length);
+        UpdateUI(playerHealth.currentHealth);
     }
 
     private void OnDisable()
@@ -22,11 +24,14 @@ public class HealthUI : MonoBehaviour
         playerHealth.OnHealthChanged -= UpdateUI; // 해제
     }
 
-    private void UpdateUI(int currentHealth, int maxHealth)
+    private void UpdateUI(int currentHealth)
     {
-        for(int i = 0; i < maxHealth; ++i)
+        if(currentHealth <= 0)
         {
-            hpFills[i].SetActive(i < currentHealth); // 현재 HP보다 작은 인덱스는 활성화, 나머지는 비활성화
+            healthImage.enabled = false;
+            return;
         }
+        healthImage.enabled = true;
+        healthImage.sprite = hpSprites[currentHealth - 1];
     }
 }
