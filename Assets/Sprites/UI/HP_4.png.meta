@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: cd4e8c8aecd423242a1847627b740df3
+guid: 4b98b4695fcb66c4ba8e022deaf99b2a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -833619706210290583
-    second: "\uBC15\uC2A4_1_0"
+      213: -8353565452683521308
+    second: HP_4_0
+  - first:
+      213: -4539582345854954728
+    second: HP_4_1
+  - first:
+      213: -8619698952179372347
+    second: HP_4_2
+  - first:
+      213: -303695164896341276
+    second: HP_4_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uBC15\uC2A4_1_0"
+      name: HP_4_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 68
-        height: 29
+        width: 15
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 964f19d3b436e64f0800000000000000
-      internalID: -833619706210290583
+      spriteID: 4e2d2d8da7c221c80800000000000000
+      internalID: -8353565452683521308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HP_4_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8135eae78e92001c0800000000000000
+      internalID: -4539582345854954728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HP_4_2
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 0
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ceaa8cd87da06880800000000000000
+      internalID: -8619698952179372347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HP_4_3
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 0
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e299584bde09cbf0800000000000000
+      internalID: -303695164896341276
       vertices: []
       indices: 
       edges: []
@@ -125,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\uBC15\uC2A4_1_0": -833619706210290583
+      HP_4_0: -8353565452683521308
+      HP_4_1: -4539582345854954728
+      HP_4_2: -8619698952179372347
+      HP_4_3: -303695164896341276
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

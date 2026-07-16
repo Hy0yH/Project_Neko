@@ -4,7 +4,10 @@ using UnityEngine.UI;
 public class ChuruUI : MonoBehaviour
 {
     [SerializeField] private PlayerInventory playerInventory;
-    [SerializeField] private Image[] churuFills;
+    [SerializeField] private Image[] churuSlots;
+    [SerializeField] private Sprite churuEmpty;
+    [SerializeField] private Sprite churuFull;
+    [SerializeField] private Sprite[] churuFilling;
 
     private void OnEnable()
     {
@@ -14,13 +17,16 @@ public class ChuruUI : MonoBehaviour
     {
         playerInventory.OnChuruChanged -= UpdateUI;
     }
-    private void UpdateUI(int currentChuru, int maxChuru, float progress)
+    private void UpdateUI(int currentChuru, int maxChuru, int killsTowardNext)
     {
-        for(int i = 0; i < maxChuru; ++i)
+        for(int i = 0; i < churuSlots.Length; ++i)
         {
-            if (i < currentChuru) churuFills[i].fillAmount = 1f;
-            else if (i == currentChuru) churuFills[i].fillAmount = progress;
-            else churuFills[i].fillAmount = 0f;
+            if (i < currentChuru)
+                churuSlots[i].sprite = churuFull;
+            else if (i == currentChuru)
+                churuSlots[i].sprite = (killsTowardNext == 0) ? churuEmpty : churuFilling[killsTowardNext - 1];
+            else
+                churuSlots[i].sprite = churuEmpty;
         }
     }
 }

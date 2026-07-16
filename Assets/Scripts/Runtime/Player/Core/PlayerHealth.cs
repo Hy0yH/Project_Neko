@@ -28,7 +28,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public int currentHealth { get; private set; }
 
     // 체력 변경 시 이벤트
-    public event Action<int, int> OnHealthChanged;
+    public event Action<int> OnHealthChanged;
     public static event Action OnDeath;
 
     private void Awake()
@@ -43,7 +43,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         currentHealth = maxHealth;
 
         // 초기 체력 UI 업데이트
-        OnHealthChanged?.Invoke(currentHealth, maxHealth);
+        OnHealthChanged?.Invoke(currentHealth);
     }
 
     // 플레이어가 피격 당할 시
@@ -66,7 +66,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         invincibilityTimer = invincibilityDuration;
 
         // 체력 변경 이벤트 호출
-        OnHealthChanged?.Invoke(currentHealth, maxHealth);
+        OnHealthChanged?.Invoke(currentHealth);
 
         if (currentHealth <= 0)
         {
@@ -103,7 +103,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         Debug.Log($"Healed: {amount}, currentHP: {currentHealth}");
 
         // 체력 변경 이벤트 호출
-        OnHealthChanged?.Invoke(currentHealth, maxHealth);
+        OnHealthChanged?.Invoke(currentHealth);
 
         return true;
     }
