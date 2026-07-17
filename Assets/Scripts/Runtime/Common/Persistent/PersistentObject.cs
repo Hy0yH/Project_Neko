@@ -2,17 +2,17 @@
 
 public class PersistentObject : MonoBehaviour
 {
-    private static PersistentObject instance;
+    public static PersistentObject Instance { get; private set; }
 
     private void Awake()
     {
-        if(instance != null && instance != this)
+        if(Instance != null && Instance != this)
         {
             Destroy(gameObject);
 
             return;
         }
-        instance = this;
+        Instance = this;
         DontDestroyOnLoad(gameObject);
     }
 }

@@ -132,7 +132,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         spriteRenderer.color = originalColor;
     }
 
-    private void Revive(Vector3 pos)
+    public void Revive(Vector3 pos)
     {
         isDead = false;
         currentHealth = maxHealth;
@@ -144,7 +144,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private IEnumerator RespawnAfterDelay()
     {
         yield return new WaitForSeconds(respawnDelay);
-        Vector3 pos = CheckpointManager.Instance.GetRespawnPoint();
-        Revive(pos);
+        SceneFlowManager.Instance.Respawn();
     }
 }

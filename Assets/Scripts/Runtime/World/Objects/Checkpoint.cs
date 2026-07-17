@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 public class Checkpoint : MonoBehaviour
 {
     [SerializeField] private InputActionReference moveAction;
+    [SerializeField] private float healInterval = 1f;
+    private float healTimer;
     
     private bool playerInRange;
     private bool isInside;
@@ -12,17 +14,16 @@ public class Checkpoint : MonoBehaviour
 
     private GameObject player;
     private Animator anim;
+    private PlayerHealth playerHealth;
 
     private void OnEnable()
     {
-        if (moveAction != null) moveAction.action.Enable();
-
         anim = GetComponent<Animator>();
     }
 
     private void OnDisable()
     {
-        if (moveAction != null) moveAction.action.Disable();
+
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -46,6 +47,16 @@ public class Checkpoint : MonoBehaviour
         bool freshUp = upNow && !wasUpLastFrame;
         bool freshSide = sideNow && !wasSideLastFrame;
 
+        if(isInside)
+        {
+            healTimer -= Time.deltaTime;
+            if(healTimer <= 0f)
+            {
+                playerHealth.Heal(1);
+                healTimer = healInterval;
+            }
+        }
+
         if(!isInside)
         {
             if (playerInRange && freshUp) EnterBox();
@@ -61,6 +72,8 @@ public class Checkpoint : MonoBehaviour
     private void EnterBox()
     {
         isInside = true;
+        healTimer = healInterval;
+        playerHealth = player.GetComponent<PlayerHealth>();
         CheckpointManager.Instance.SetRespawnPoint(transform.position);
 
         player.GetComponent<SpriteRenderer>().enabled = false;
