@@ -1392,6 +1392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneTransition
   targetScene: UndergroundStage
+  targetSpawnId: FromRooftop
 --- !u!61 &892448305
 BoxCollider2D:
   m_ObjectHideFlags: 0

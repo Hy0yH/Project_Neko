@@ -6,6 +6,9 @@ public class SceneFlowManager : MonoBehaviour
 {
     public static SceneFlowManager Instance;
     private bool pendingRespawn;
+    private bool pendingTransition;
+    private string pendingSpawnId;
+    
 
     private void Awake()
     {
@@ -27,6 +30,19 @@ public class SceneFlowManager : MonoBehaviour
         {
             pendingRespawn = false;
             PlaceAtCheckpoint();
+        }
+        else if (pendingTransition)
+        {
+            pendingTransition = false;
+            
+            bool placed = PlaceAtSceneSpawnPoint(pendingSpawnId);
+
+            if (!placed)
+            {
+                PlaceAtDefaultSpawn(player);
+            }
+
+            pendingSpawnId = null;
         }
         else
         {
@@ -58,5 +74,45 @@ public class SceneFlowManager : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         Vector3 pos = CheckpointManager.Instance.GetRespawnPoint();
         player.GetComponent<PlayerHealth>().Revive(pos);
+    }
+
+    private bool PlaceAtSceneSpawnPoint(string spawnId)
+    {
+        SceneSpawnPoint[] spawnPoints = FindObjectsByType<SceneSpawnPoint>(FindObjectsSortMode.None);
+
+        foreach (SceneSpawnPoint spawnPoint in spawnPoints)
+        {
+            if (spawnPoint.SpawnId == spawnId)
+            {
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+                if (player != null)
+                {
+                    player.transform.position = spawnPoint.transform.position;
+                    return true;
+                }
+            }
+        }
+
+        Debug.LogWarning($"SpawnPoint를 찾지 못했습니다. Spawn Id : {spawnId}");
+        return false;
+    }
+
+    public void TransitionToScene(string targetScene, string targetSpawnId)
+    {
+        pendingSpawnId = targetSpawnId;
+        pendingTransition = true;
+
+        SceneManager.LoadScene(targetScene);
+    }
+
+    private void PlaceAtDefaultSpawn(GameObject Player)
+    {
+        GameObject spawn = GameObject.Find("SpawnPoint");
+
+        if (spawn != null)
+        {
+            Player.transform.position = spawn.transform.position;
+        }
     }
 }
