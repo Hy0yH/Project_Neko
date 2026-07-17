@@ -5,6 +5,7 @@ public class MainMenuUI : MonoBehaviour
 {
     [SerializeField] private GameObject mainPanel;
     [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private CutsceneController cutsceneController;
     [SerializeField] private string startSceneName = "UndergroundStage";
 
     void Start()
@@ -31,7 +32,9 @@ public class MainMenuUI : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(startSceneName);
+        mainPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+        cutsceneController.Play();
     }
 
     public void QuitGame()
