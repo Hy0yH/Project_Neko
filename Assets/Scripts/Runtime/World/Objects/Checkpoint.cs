@@ -1,12 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Checkpoint : MonoBehaviour
 {
     [SerializeField] private InputActionReference moveAction;
+    [SerializeField] private float exitDelay = 0.3f;
     [SerializeField] private float healInterval = 1f;
     private float healTimer;
-    
+
     private bool playerInRange;
     private bool isInside;
     private bool wasUpLastFrame;
@@ -47,17 +49,17 @@ public class Checkpoint : MonoBehaviour
         bool freshUp = upNow && !wasUpLastFrame;
         bool freshSide = sideNow && !wasSideLastFrame;
 
-        if(isInside)
+        if (isInside)
         {
             healTimer -= Time.deltaTime;
-            if(healTimer <= 0f)
+            if (healTimer <= 0f)
             {
                 playerHealth.Heal(1);
                 healTimer = healInterval;
             }
         }
 
-        if(!isInside)
+        if (!isInside)
         {
             if (playerInRange && freshUp) EnterBox();
         } else
@@ -76,6 +78,10 @@ public class Checkpoint : MonoBehaviour
         playerHealth = player.GetComponent<PlayerHealth>();
         CheckpointManager.Instance.SetRespawnPoint(transform.position);
 
+        // 속도 정지
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        rb.linearVelocity = Vector2.zero;
+
         player.GetComponent<SpriteRenderer>().enabled = false;
         player.GetComponent<PlayerController>().enabled = false;
         player.GetComponent<PlayerCombat>().enabled = false;
@@ -85,11 +91,17 @@ public class Checkpoint : MonoBehaviour
     }
     private void ExitBox()
     {
+        anim.SetTrigger("Open");
+        StartCoroutine(ExitAfterAnimation());
+    }
+    private IEnumerator ExitAfterAnimation()
+    {
+        yield return new WaitForSeconds(exitDelay);
+
+
         isInside = false;
         player.GetComponent<SpriteRenderer>().enabled = true;
         player.GetComponent<PlayerController>().enabled = true;
         player.GetComponent<PlayerCombat>().enabled = true;
-
-        anim.SetTrigger("Open");
     }
 }

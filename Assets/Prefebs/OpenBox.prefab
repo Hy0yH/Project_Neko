@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Checkpoint
   moveAction: {fileID: 1812239802568077228, guid: 1fd6d7089a041254aa9e192c8ef7ccb4, type: 3}
+  exitDelay: 0.3
   healInterval: 1
 --- !u!95 &7364941473294822012
 Animator:
