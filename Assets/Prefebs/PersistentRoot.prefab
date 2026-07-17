@@ -576,7 +576,7 @@ MonoBehaviour:
   acceleration: 30
   deceleration: 30
   maxJumpForce: 12
-  wallJumpForce: {x: 4, y: 5}
+  wallJumpForce: {x: 4, y: 8}
   wallJumpInputLockTime: 0.3
   maxFallSpeed: 20
   moveAction: {fileID: 1812239802568077228, guid: 1fd6d7089a041254aa9e192c8ef7ccb4, type: 3}
@@ -843,7 +843,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.7152777
+  orthographic size: 4.6805553
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
