@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 18d8c317f6244b747b342cb94ef34570
   - enabled: 1
+    path: Assets/Scenes/RoofTop_Street.unity
+    guid: fd502894f12cd524483c502f7d7a9f8f
+  - enabled: 1
     path: Assets/Scenes/UndergroundStage.unity
     guid: a1d74ee467fe302438ab7e8c6539d4c4
   - enabled: 1

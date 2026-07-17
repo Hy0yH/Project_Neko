@@ -7,6 +7,7 @@ public class WalkState : PlayerState
     public override void Enter()
     {
         player.playerAudio?.StartWalkLoop();
+        if(player.anim != null) player.anim.SetBool("isJumping", false);
     }
 
     public override void Update()
