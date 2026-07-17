@@ -75,6 +75,7 @@ public class PlayerController : MonoBehaviour
         if (moveAction != null) moveAction.action.Enable();
         if (jumpAction != null) jumpAction.action.Enable();
         PlayerHealth.OnDeath += HandleDeath;
+        PlayerHealth.OnRespawn += HandleRespawn;
     }
 
     private void OnDisable()
@@ -82,6 +83,7 @@ public class PlayerController : MonoBehaviour
         if (moveAction != null) moveAction.action.Disable();
         if (jumpAction != null) jumpAction.action.Disable();
         PlayerHealth.OnDeath -= HandleDeath;
+        PlayerHealth.OnRespawn -= HandleRespawn;
     }
 
     private void Start()
@@ -178,5 +180,15 @@ public class PlayerController : MonoBehaviour
     private void HandleDeath()
     {
         ChangeState(deadState);
+    }
+
+    private void HandleRespawn()
+    {
+        anim.SetBool("isDead", false);
+        rb.linearVelocity = Vector2.zero;
+        ChangeState(idleState);
+
+        GetComponent<PlayerCombat>().enabled = true;
+        GetComponent<PlayerInventory>().enabled = true;
     }
 }

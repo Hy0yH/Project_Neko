@@ -7,7 +7,11 @@ public class IdleState : PlayerState
     public override void Enter()
     {
         // 고양이가 가만히 있는 애니메이션 재생
-        if (player.anim != null) player.anim.SetBool("isWalking", false);
+        if (player.anim != null)
+        {
+            player.anim.SetBool("isWalking", false);
+            player.anim.SetBool("isJumping", false);
+        }
     }
 
     public override void Update()

@@ -3881,7 +3881,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuUI
   mainPanel: {fileID: 1607016456}
   settingsPanel: {fileID: 142169596}
-  startSceneName: test
+  startSceneName: RoofTop_Street
 --- !u!1 &571800445
 GameObject:
   m_ObjectHideFlags: 0

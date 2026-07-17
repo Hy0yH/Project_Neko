@@ -121,12 +121,12 @@ TextureImporter:
       name: "\uC5F4\uB9B0\uBC15\uC2A4(open)_sheet_0"
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 0
-        width: 49
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 82
+        height: 69
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -143,12 +143,12 @@ TextureImporter:
       name: "\uC5F4\uB9B0\uBC15\uC2A4(open)_sheet_1"
       rect:
         serializedVersion: 2
-        x: 98
+        x: 82
         y: 0
-        width: 50
-        height: 45
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 82
+        height: 69
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -165,12 +165,12 @@ TextureImporter:
       name: "\uC5F4\uB9B0\uBC15\uC2A4(open)_sheet_2"
       rect:
         serializedVersion: 2
-        x: 179
+        x: 164
         y: 0
-        width: 51
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 82
+        height: 69
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -187,12 +187,12 @@ TextureImporter:
       name: "\uC5F4\uB9B0\uBC15\uC2A4(open)_sheet_3"
       rect:
         serializedVersion: 2
-        x: 250
-        y: 4
-        width: 72
-        height: 65
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 246
+        y: 0
+        width: 82
+        height: 69
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -209,12 +209,12 @@ TextureImporter:
       name: "\uC5F4\uB9B0\uBC15\uC2A4(open)_sheet_4"
       rect:
         serializedVersion: 2
-        x: 327
-        y: 10
-        width: 84
-        height: 55
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 328
+        y: 0
+        width: 82
+        height: 69
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -231,12 +231,12 @@ TextureImporter:
       name: "\uC5F4\uB9B0\uBC15\uC2A4(open)_sheet_5"
       rect:
         serializedVersion: 2
-        x: 412
-        y: 2
-        width: 76
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 410
+        y: 0
+        width: 82
+        height: 69
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -253,12 +253,12 @@ TextureImporter:
       name: "\uC5F4\uB9B0\uBC15\uC2A4(open)_sheet_6"
       rect:
         serializedVersion: 2
-        x: 500
+        x: 492
         y: 0
-        width: 64
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 82
+        height: 69
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -275,7 +275,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 71757b2e663c77647880b2ccf786ba83
     internalID: 0
     vertices: []
     indices: 
@@ -283,7 +283,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":82.0,"y":69.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       "\uC5F4\uB9B0\uBC15\uC2A4(open)_sheet_0": -4742904089156748603
       "\uC5F4\uB9B0\uBC15\uC2A4(open)_sheet_1": 6985842143100812808

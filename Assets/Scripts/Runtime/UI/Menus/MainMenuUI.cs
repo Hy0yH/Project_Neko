@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuUI : MonoBehaviour
@@ -31,7 +31,7 @@ public class MainMenuUI : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("UndergroundStage");
+        SceneManager.LoadScene(startSceneName);
     }
 
     public void QuitGame()

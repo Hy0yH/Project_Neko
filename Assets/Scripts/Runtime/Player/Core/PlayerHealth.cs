@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Unity.Cinemachine;
-using Unity.VisualScripting;
+using UnityEngine.InputSystem;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour, IDamageable
@@ -30,6 +30,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     // 체력 변경 시 이벤트
     public event Action<int> OnHealthChanged;
     public static event Action OnDeath;
+
+    // 부활 이벤트
+    public static event Action OnRespawn;
+    [SerializeField] private float respawnDelay = 5f;
 
     private void Awake()
     {
@@ -85,12 +89,15 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         Debug.Log("Died");
         // 죽음 처리
         OnDeath?.Invoke();
+        StartCoroutine(RespawnAfterDelay());
     }
 
     private void Update()
     {
         // 무적 타이머가 0보다 크면 감소
         if (invincibilityTimer > 0f) invincibilityTimer -= Time.deltaTime;
+
+        if (Keyboard.current != null && Keyboard.current.hKey.wasPressedThisFrame) TakeDamage(3);
     }
 
     public bool Heal(int amount)
@@ -123,5 +130,21 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         // 안전 복구
         spriteRenderer.color = originalColor;
+    }
+
+    private void Revive(Vector3 pos)
+    {
+        isDead = false;
+        currentHealth = maxHealth;
+        transform.position = pos;
+        OnHealthChanged?.Invoke(currentHealth);
+        OnRespawn?.Invoke();
+    }
+
+    private IEnumerator RespawnAfterDelay()
+    {
+        yield return new WaitForSeconds(respawnDelay);
+        Vector3 pos = CheckpointManager.Instance.GetRespawnPoint();
+        Revive(pos);
     }
 }
