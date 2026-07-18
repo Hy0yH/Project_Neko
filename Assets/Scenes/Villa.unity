@@ -488,6 +488,7 @@ GameObject:
   m_Component:
   - component: {fileID: 150766091}
   - component: {fileID: 150766092}
+  - component: {fileID: 150766093}
   m_Layer: 6
   m_Name: 3_Floor
   m_TagString: Untagged
@@ -556,6 +557,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &150766093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150766090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e0b9f983be0c1f49bfe84baf27327b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VillaFloorBlurZone
+  focusPoint: {fileID: 2132494432}
+  halfHeight: 2.9
 --- !u!1 &178811821
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,6 +672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 185120446}
   - component: {fileID: 185120447}
+  - component: {fileID: 185120448}
   m_Layer: 6
   m_Name: B1_Floor_2
   m_TagString: Untagged
@@ -725,6 +741,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &185120448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185120445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e0b9f983be0c1f49bfe84baf27327b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VillaFloorBlurZone
+  focusPoint: {fileID: 1812066322}
+  halfHeight: 2.9
 --- !u!1 &260736307
 GameObject:
   m_ObjectHideFlags: 0
@@ -1061,6 +1091,7 @@ GameObject:
   m_Component:
   - component: {fileID: 494741750}
   - component: {fileID: 494741751}
+  - component: {fileID: 494741752}
   m_Layer: 6
   m_Name: 4_Floor
   m_TagString: Untagged
@@ -1129,6 +1160,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &494741752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494741749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e0b9f983be0c1f49bfe84baf27327b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VillaFloorBlurZone
+  focusPoint: {fileID: 1332255559}
+  halfHeight: 2.9
 --- !u!1 &516313538
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,6 +1184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 516313539}
   - component: {fileID: 516313540}
+  - component: {fileID: 516313541}
   m_Layer: 6
   m_Name: 2_Floor
   m_TagString: Untagged
@@ -1207,6 +1253,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &516313541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516313538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e0b9f983be0c1f49bfe84baf27327b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VillaFloorBlurZone
+  focusPoint: {fileID: 1240695924}
+  halfHeight: 2.9
 --- !u!1 &730577195
 GameObject:
   m_ObjectHideFlags: 0
@@ -1383,6 +1443,66 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.79344, y: -3.24424, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1011408648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1011408650}
+  - component: {fileID: 1011408649}
+  m_Layer: 0
+  m_Name: VillaFloorBlurSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1011408649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011408648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a0cabaf3f466243a74d77c990d4383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VillaFloorBlurController
+  player: {fileID: 0}
+  targetCamera: {fileID: 0}
+  blurMaterial: {fileID: 2100000, guid: 61ac8959dcc26b946a8c064e4833afa6, type: 2}
+  startingZone: {fileID: 1963957500}
+  floorZones:
+  - {fileID: 185120448}
+  - {fileID: 1940928661}
+  - {fileID: 516313541}
+  - {fileID: 150766093}
+  - {fileID: 494741752}
+  heightSampleOffset: 0.2
+  switchHysteresis: 0.1
+  blurRadius: 8
+  feather: 0.03
+  effectStrength: 1
+  currentZone: {fileID: 0}
+--- !u!4 &1011408650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011408648}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.23162, y: -8.35178, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2307,6 +2427,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1940928659}
   - component: {fileID: 1940928660}
+  - component: {fileID: 1940928661}
   m_Layer: 6
   m_Name: 1_Floor
   m_TagString: Untagged
@@ -2375,6 +2496,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1940928661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940928658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e0b9f983be0c1f49bfe84baf27327b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VillaFloorBlurZone
+  focusPoint: {fileID: 1731781916}
+  halfHeight: 2.9
 --- !u!1 &1963957497
 GameObject:
   m_ObjectHideFlags: 0
@@ -2385,6 +2520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1963957498}
   - component: {fileID: 1963957499}
+  - component: {fileID: 1963957500}
   m_Layer: 6
   m_Name: B1_Floor_1
   m_TagString: Untagged
@@ -2453,6 +2589,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1963957500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963957497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e0b9f983be0c1f49bfe84baf27327b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VillaFloorBlurZone
+  focusPoint: {fileID: 1812066322}
+  halfHeight: 2.9
 --- !u!1 &2070647350
 GameObject:
   m_ObjectHideFlags: 0
@@ -2742,3 +2892,4 @@ SceneRoots:
   - {fileID: 315377830}
   - {fileID: 260736308}
   - {fileID: 962195331}
+  - {fileID: 1011408650}
