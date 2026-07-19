@@ -7,6 +7,9 @@ Shader "ProjectNeko/VillaFloorBlur"
         _FocusTop ("Focus Top", Float) = 1
         _Feather ("Feather", Range(0, 0.1)) = 0.02
         _EffectStrength ("Effect Strength", Range(0, 1)) = 0
+
+        _DarkTint ("Dark Tint", Color) = (0, 0, 0, 1)
+        _DarkOpacity ("Dark Opacity", Range(0, 1)) = 0.75
     }
 
     SubShader
@@ -38,6 +41,9 @@ Shader "ProjectNeko/VillaFloorBlur"
             float _FocusTop;
             float _Feather;
             float _EffectStrength;
+
+            half4 _DarkTint;
+            float _DarkOpacity;
 
             half4 SampleScreen(float2 uv)
             {
@@ -90,10 +96,25 @@ Shader "ProjectNeko/VillaFloorBlur"
                     uv.y
                 );
 
-                float blurMask = max(belowFloor, aboveFloor);
-                blurMask *= _EffectStrength;
+                float regionMask = max(belowFloor, aboveFloor);
 
-                return lerp(originalColor, blurredColor, blurMask);
+                // 블러된 화면에 검은색을 반투명하게 섞는다.
+                half4 darkBlurredColor = blurredColor;
+
+                darkBlurredColor.rgb = lerp(
+                    blurredColor.rgb,
+                    _DarkTint.rgb,
+                    _DarkOpacity
+                );
+
+                // Effect Strength는 전체 효과의 켜기/끄기 역할도 한다.
+                float effectMask = regionMask * _EffectStrength;
+
+                return lerp(
+                    originalColor,
+                    darkBlurredColor,
+                    effectMask
+                );
             }
 
             ENDHLSL

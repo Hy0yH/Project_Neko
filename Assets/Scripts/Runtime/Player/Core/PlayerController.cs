@@ -191,4 +191,23 @@ public class PlayerController : MonoBehaviour
         GetComponent<PlayerCombat>().enabled = true;
         GetComponent<PlayerInventory>().enabled = true;
     }
+
+    public void SetControlLocked(bool locked)
+    {
+        if (locked)
+        {
+            moveInputX = 0f;
+            jumpInputTriggered = false;
+            jumpHeld = false;
+
+            if (rb != null)
+                rb.linearVelocityX = 0f;
+
+            // 걷기 상태와 발소리도 멈추도록 설정
+            if (idleState != null)
+                ChangeState(idleState);
+        }
+
+        enabled = !locked;
+    }
 }
