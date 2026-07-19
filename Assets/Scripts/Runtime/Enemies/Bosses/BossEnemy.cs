@@ -44,8 +44,8 @@ public class BossEnemy : MonoBehaviour
 
     private void Start()
     {
-        IgnoreCollisionWithPlayer();
-        StartInfinityAttack();
+        
+        StopPattern();
     }
     
     private void Awake()
@@ -288,8 +288,24 @@ public class BossEnemy : MonoBehaviour
         }
     }
 
+    public void BeginBattle(Transform player)
+    {
+        playerTarget = player;
+        
+        currentState = BossState.Idle;
+
+        IgnoreCollisionWithPlayer();
+        StartInfinityAttack();
+    }
+
     public void StopPattern()
     {
         currentState = BossState.Idle;
+
+        if (rigid != null)
+        {
+            rigid.linearVelocity = Vector2.zero;
+            rigid.angularVelocity = 0f;
+        }
     }
 }

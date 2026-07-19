@@ -155,4 +155,18 @@ public class PlayerCombat : MonoBehaviour
         chargeCompleteAura.SetActive(false);
         chargeStartAura.SetActive(false);
     }
+
+    public void SetCombatLocked(bool locked)
+    {
+        if (locked)
+        {
+            currentPhase = AttackPhase.Idle;
+            stateTimer = 0f;
+            
+            if (chargeStartAura != null) chargeStartAura.SetActive(false);
+            if (chargeCompleteAura != null) chargeCompleteAura.SetActive(false);
+        }
+
+        enabled = !locked;
+    }
 }
