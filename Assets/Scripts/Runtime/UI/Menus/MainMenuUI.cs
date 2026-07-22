@@ -5,6 +5,7 @@ public class MainMenuUI : MonoBehaviour
 {
     [SerializeField] private GameObject mainPanel;
     [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private GameObject creditsOverlay;
     [SerializeField] private CutsceneController cutsceneController;
     [SerializeField] private string startSceneName = "UndergroundStage";
 
@@ -17,6 +18,17 @@ public class MainMenuUI : MonoBehaviour
     {
         mainPanel.SetActive(true);
         settingsPanel.SetActive(false);
+        creditsOverlay.SetActive(false);
+    }
+
+    public void OpenCredits()
+    {
+        creditsOverlay.SetActive(true);
+    }
+
+    public void CloseCredits()
+    {
+        creditsOverlay.SetActive(false);
     }
 
     public void OpenSettings()

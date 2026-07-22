@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class BossEnemy : MonoBehaviour
@@ -28,6 +29,11 @@ public class BossEnemy : MonoBehaviour
 
     [Header("Visual")]
     [SerializeField] private bool spriteFacingRightByDefault = false; //스프라이트가 기본적으로 오른쪽을 향하는지 여부
+
+    [Header("Player Damage")]
+    [SerializeField, Min(1)] private int contactDamage = 1;
+
+    private bool isBattleActive;
     
     [HideInInspector] public Rigidbody2D rigid;
     private BossState currentState = BossState.Idle;
@@ -221,12 +227,6 @@ public class BossEnemy : MonoBehaviour
             return;
         }
 
-        if (dashTimer >= maxDashTime)
-        {
-            EnterInfinityAttack();
-            return;
-        }
-
         Vector2 nextPosition = Vector2.MoveTowards
         (
             currentPosition,
@@ -235,7 +235,7 @@ public class BossEnemy : MonoBehaviour
         );
 
         MoveTo(nextPosition);
-}
+    }
 
     private void MoveTo(Vector2 position)
     {
@@ -293,19 +293,39 @@ public class BossEnemy : MonoBehaviour
         playerTarget = player;
         
         currentState = BossState.Idle;
+        isBattleActive = true;
 
         IgnoreCollisionWithPlayer();
-        StartInfinityAttack();
+        StartDashToPlayer();
     }
 
     public void StopPattern()
     {
         currentState = BossState.Idle;
+        isBattleActive = false;
 
         if (rigid != null)
         {
             rigid.linearVelocity = Vector2.zero;
             rigid.angularVelocity = 0f;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        TryDamagePlayer(other);
+    }
+
+    private void TryDamagePlayer(Collider2D other)
+    {
+        if (!isBattleActive)
+            return;
+
+        PlayerHealth playerHealth = other.GetComponentInParent<PlayerHealth>();
+
+        if (playerHealth == null)
+            return;
+
+        playerHealth.TakeDamage(contactDamage);
     }
 }

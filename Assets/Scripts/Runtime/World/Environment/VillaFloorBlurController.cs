@@ -22,6 +22,12 @@ public class VillaFloorBlurController : MonoBehaviour
     [SerializeField, Range(0f, 0.1f)] private float feather = 0.02f;
     [SerializeField, Range(0f, 1f)] private float effectStrength = 1f;
 
+    [Header("Cinematic")]
+    [SerializeField, Min(0f)] private float cinematicFadeDuration = 0.5f;
+
+    private bool isCinematicReveal;
+    private float displayedEffectStrength;
+
     [SerializeField] private VillaFloorBlurZone currentZone;
 
     private static readonly int FocusBottomId =
@@ -42,7 +48,13 @@ public class VillaFloorBlurController : MonoBehaviour
     private void Start()
     {
         currentZone = startingZone;
+        displayedEffectStrength = effectStrength;
         ResolveReferences();
+    }
+
+    public void SetCinematicReveal(bool reveal)
+    {
+        isCinematicReveal = reveal;
     }
 
     private void LateUpdate()
@@ -149,7 +161,23 @@ public class VillaFloorBlurController : MonoBehaviour
         blurMaterial.SetFloat(FocusTopId, top);
         blurMaterial.SetFloat(BlurRadiusId, blurRadius);
         blurMaterial.SetFloat(FeatherId, feather);
-        blurMaterial.SetFloat(EffectStrengthId, effectStrength);
+        
+        float targetStrength = isCinematicReveal ? 0f : effectStrength;
+
+        if (cinematicFadeDuration <= 0f)
+        {
+            displayedEffectStrength = targetStrength;
+        }
+        else
+        {
+            displayedEffectStrength = Mathf.MoveTowards(
+                displayedEffectStrength,
+                targetStrength,
+                Time.deltaTime / cinematicFadeDuration
+            );
+        }
+
+        blurMaterial.SetFloat(EffectStrengthId, displayedEffectStrength);
     }
 
     private void OnDisable()
