@@ -25,11 +25,12 @@ public class DisplaySettingsController : MonoBehaviour
     [SerializeField] private TMP_Text sfxVolumeValueText;
     [SerializeField] private RectTransform sfxVolumeHandle;
 
-    [Header("Audio")]
+    [Header("Brightness Processing")]
     [SerializeField] private Volume brightnessVolume;
     [SerializeField] private float minBrightness = -1.5f;
     [SerializeField] private float maxBrightness = 1.5f;
 
+    [Header("Audio")]
     [SerializeField] private AudioMixer audioMixer;
     [SerializeField] private string masterVolumeParameter = "MasterVolume";
     [SerializeField] private string bgmVolumeParameter = "BGMVolume";

@@ -47,9 +47,39 @@ public class Enemy : MonoBehaviour, IDamageable
     private Material originalMaterial; //원래 머티리얼을 저장할 변수
     private Coroutine hitFlashCoroutine;
 
+    private bool isPaused;
+    private float previousAnimatorSpeed;
+
     private void Start()
     {
         ChangeState(patrolState);
+    }
+
+    public void SetPaused(bool paused)
+    {
+        if (isPaused == paused)
+            return;
+
+        isPaused = paused;
+
+        if (rigid != null)
+        {
+            rigid.linearVelocity = Vector2.zero;
+            rigid.angularVelocity = 0f;
+        }
+
+        if (anim != null)
+        {
+            if (paused)
+            {
+                previousAnimatorSpeed = anim.speed;
+                anim.speed = 0f;
+            }
+            else
+            {
+                anim.speed = previousAnimatorSpeed;
+            }
+        }
     }
 
 
@@ -83,6 +113,9 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void Update()
     {
+        if (isPaused)
+            return;
+
         lastAttackTime += Time.deltaTime; //매 프레임마다 공격 시간 누적
 
         if (currentState != null)
@@ -93,6 +126,9 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void FixedUpdate()
     {
+        if (isPaused)
+            return;
+
         if (currentState != null)
         {
             //물리 엔진을 이용한 이동 로직은 여기에서 처리한다.
@@ -149,8 +185,14 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void TryDamagePlayer(Collision2D collision)
     {
-        if (attackSO == null) return; //공격 데이터가 할당되어 있지 않으면 아무것도 하지 않음
-        if (!collision.collider.CompareTag("Player")) return; //충돌한 객체가 플레이어가 아니면 아무것도 하지 않음
+        if (isPaused)
+            return;
+
+        if (attackSO == null) 
+            return; //공격 데이터가 할당되어 있지 않으면 아무것도 하지 않음
+        
+        if (!collision.collider.CompareTag("Player"))
+             return; //충돌한 객체가 플레이어가 아니면 아무것도 하지 않음
 
         IDamageable damageable = collision.collider.GetComponent<IDamageable>();
         damageable?.TakeDamage(attackSO.enemyDamage);

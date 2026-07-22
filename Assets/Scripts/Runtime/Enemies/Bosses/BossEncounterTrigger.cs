@@ -7,6 +7,7 @@ public class BossEncounterTrigger : MonoBehaviour
 {
     [Header("Encounter")]
     [SerializeField] private BossEnemy boss;
+    [SerializeField] private Enemy[] enimiesToPause;
 
     [Header("Camera")]
     [SerializeField] private CinemachineCamera gameplayCamera;
@@ -16,6 +17,9 @@ public class BossEncounterTrigger : MonoBehaviour
     [SerializeField, Min(0f)] private float cameraMoveTime = 1f;
     [SerializeField, Min(0f)] private float bossRevealTime = 1.5f;
     [SerializeField, Min(0f)] private float cameraReturnTime = 1f;
+
+    [Header("Environment")]
+    [SerializeField] private VillaFloorBlurController blurController;
 
     private bool hasTriggered;
 
@@ -45,8 +49,7 @@ public class BossEncounterTrigger : MonoBehaviour
 
     private IEnumerator PlayBossIntro(PlayerController playerController)
     {
-        PlayerCombat playerCombat =
-            playerController.GetComponent<PlayerCombat>();
+        PlayerCombat playerCombat = playerController.GetComponent<PlayerCombat>();
 
         Transform playerTransform = playerController.transform;
         Transform originalFollowTarget = gameplayCamera.Follow;
@@ -57,6 +60,11 @@ public class BossEncounterTrigger : MonoBehaviour
         if (playerCombat != null)
             playerCombat.SetCombatLocked(true);
 
+        SetEnemiesPaused(true);
+
+        if (blurController != null)
+            blurController.SetCinematicReveal(true);
+
         // 2. 카메라를 보스에게 이동
         gameplayCamera.Follow = bossCameraFocus;
 
@@ -65,11 +73,11 @@ public class BossEncounterTrigger : MonoBehaviour
         // 이 시점에 보스 이름, 포효 애니메이션, 효과음 등을 실행
         yield return new WaitForSeconds(bossRevealTime);
 
+        if (blurController != null)
+            blurController.SetCinematicReveal(false);
+
         // 3. 카메라를 원래 플레이어에게 복귀
-        gameplayCamera.Follow =
-            originalFollowTarget != null
-                ? originalFollowTarget
-                : playerTransform;
+        gameplayCamera.Follow = originalFollowTarget != null ? originalFollowTarget : playerTransform;
 
         yield return new WaitForSeconds(cameraReturnTime);
 
@@ -79,8 +87,23 @@ public class BossEncounterTrigger : MonoBehaviour
         if (playerCombat != null)
             playerCombat.SetCombatLocked(false);
 
+        // 일반 적 정지
+        SetEnemiesPaused(false);
+
         boss.BeginBattle(playerTransform);
 
         gameObject.SetActive(false);
+    }
+
+    private void SetEnemiesPaused(bool paused)
+    {
+        if (enimiesToPause == null)
+            return;
+
+        foreach (Enemy enemy in enimiesToPause)
+        {
+            if (enemy != null)
+                enemy.SetPaused(paused);
+        }
     }
 }
