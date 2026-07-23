@@ -3585,7 +3585,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1471696233}
   - component: {fileID: 1471696234}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Boundary2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5595,6 +5595,10 @@ PrefabInstance:
     - target: {fileID: 5221111042332264441, guid: 0c720528d97f87e4e8f823c67bd8bce5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164304936603579899, guid: 0c720528d97f87e4e8f823c67bd8bce5, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6164304936603579899, guid: 0c720528d97f87e4e8f823c67bd8bce5, type: 3}
       propertyPath: m_Name

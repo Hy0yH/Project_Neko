@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         // 바닥 판정
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer) != null;
+        isGrounded = Physics2D.OverlapBox(groundCheck.position, playerForm.CurrentForm.groundCheckSize, 0f, groundLayer) != null;
 
         // 벽 닿아있는지 판정
         isTouchingWall = Physics2D.OverlapCircle(wallCheck.position, wallCheckRadius, wallLayer) != null;
@@ -210,4 +210,17 @@ public class PlayerController : MonoBehaviour
 
         enabled = !locked;
     }
+/*    private void OnDrawGizmosSelected()
+    {
+        if(groundCheck != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireCube(groundCheck.position, playerForm.CurrentForm.groundCheckSize);
+        }
+        if(wallCheck != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireCube(wallCheck.position, playerForm.CurrentForm.wallCheckSize);
+        }
+    }*/
 }
