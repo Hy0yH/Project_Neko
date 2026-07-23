@@ -45,9 +45,9 @@ Material:
     - _DarkOpacity: 0.98
     - _EffectStrength: 0
     - _EnableExternalAlpha: 0
-    - _Feather: 0.03
-    - _FocusBottom: 0.16605663
-    - _FocusTop: 0.74605656
+    - _Feather: 0.015
+    - _FocusBottom: 0.50339
+    - _FocusTop: 1.1633902
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
