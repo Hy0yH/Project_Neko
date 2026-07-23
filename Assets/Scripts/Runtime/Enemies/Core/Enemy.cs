@@ -52,6 +52,15 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void Start()
     {
+        if (playerTarget == null)
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+            if (player != null)
+            {
+                playerTarget = player.transform;
+            }
+        }
         ChangeState(patrolState);
     }
 
@@ -173,30 +182,27 @@ public class Enemy : MonoBehaviour, IDamageable
         Destroy(gameObject); //적 오브젝트 제거
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        TryDamagePlayer(collision);
+        TryDamagePlayer(other);
     }
 
-    private void OnCollisionStay2D(Collision2D collsion)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        TryDamagePlayer(collsion);
+        TryDamagePlayer(other);
     }
 
-    private void TryDamagePlayer(Collision2D collision)
+    private void TryDamagePlayer(Collider2D other)
     {
-        if (isPaused)
+        if (isPaused || attackSO == null)
             return;
 
-        if (attackSO == null) 
-            return; //공격 데이터가 할당되어 있지 않으면 아무것도 하지 않음
-        
-        if (!collision.collider.CompareTag("Player"))
-             return; //충돌한 객체가 플레이어가 아니면 아무것도 하지 않음
+        PlayerHealth playerHealth = other.GetComponentInParent<PlayerHealth>();
 
-        IDamageable damageable = collision.collider.GetComponent<IDamageable>();
-        damageable?.TakeDamage(attackSO.enemyDamage);
-        Debug.Log($"Hit {collision.collider.name} for {attackSO.enemyDamage} damage");
+        if (playerHealth == null)
+            return;
+
+        playerHealth.TakeDamage(attackSO.enemyDamage);
     }
 
     private IEnumerator HitFlash()

@@ -3869,7 +3869,7 @@ GameObject:
   - component: {fileID: 972587005892438848}
   - component: {fileID: 7376867872029215850}
   - component: {fileID: 4383828980226292426}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Neko
   m_TagString: Player
   m_Icon: {fileID: 0}

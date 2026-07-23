@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb02061fd859830418f1e375b9645de6, type: 3}
   m_Name: Bipedal_StrongAttack
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttackSO
-  damage: 1
+  damage: 3
   startupTime: 0.16
   activeTime: 0.24
   recoveryTime: 0.1
