@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using Unity.Cinemachine;
-using UnityEngine.InputSystem;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour, IDamageable
@@ -96,8 +95,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         // 무적 타이머가 0보다 크면 감소
         if (invincibilityTimer > 0f) invincibilityTimer -= Time.deltaTime;
-
-        if (Keyboard.current != null && Keyboard.current.hKey.wasPressedThisFrame) TakeDamage(3);
     }
 
     public bool Heal(int amount)

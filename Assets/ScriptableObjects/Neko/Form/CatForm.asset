@@ -19,3 +19,5 @@ MonoBehaviour:
   chargeAttack: {fileID: 0}
   colliderSize: {x: 1, y: 0.8}
   colliderOffset: {x: 0, y: 0.4}
+  groundCheckSize: {x: 1, y: 0.1}
+  wallCheckSize: {x: 0.1, y: 0.9}

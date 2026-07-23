@@ -19,4 +19,8 @@ public class PlayerFormSO : ScriptableObject
     [Header("Collider")]
     public Vector2 colliderSize;
     public Vector2 colliderOffset;
+
+    [Header("CheckSize")]
+    public Vector2 groundCheckSize;
+    public Vector2 wallCheckSize;
 }

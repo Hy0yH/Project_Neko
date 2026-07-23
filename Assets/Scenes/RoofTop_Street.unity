@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 24160934}
   - component: {fileID: 24160936}
   - component: {fileID: 24160935}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: "\uC625\uC0C1\uD658\uD48D\uAD6C_0"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3801,7 +3801,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1471696233}
   - component: {fileID: 1471696234}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Boundary2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
