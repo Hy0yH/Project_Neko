@@ -525,8 +525,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 360
-  m_PreferredHeight: 60
+  m_PreferredWidth: 700
+  m_PreferredHeight: 65
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -550,7 +550,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC774\uBA54\uC77C"
+  m_text: hippie4440@gmail.com
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c3702b67305f6e246be35b73de661d4b, type: 2}
   m_sharedMaterial: {fileID: -7548262398916953536, guid: c3702b67305f6e246be35b73de661d4b, type: 2}
@@ -1650,8 +1650,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 360
-  m_PreferredHeight: 60
+  m_PreferredWidth: 700
+  m_PreferredHeight: 65
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -1675,7 +1675,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC774\uBA54\uC77C"
+  m_text: pparksj22@gmail.com
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c3702b67305f6e246be35b73de661d4b, type: 2}
   m_sharedMaterial: {fileID: -7548262398916953536, guid: c3702b67305f6e246be35b73de661d4b, type: 2}
@@ -2381,7 +2381,7 @@ MonoBehaviour:
   m_MinWidth: -1
   m_MinHeight: -1
   m_PreferredWidth: 1200
-  m_PreferredHeight: 60
+  m_PreferredHeight: 65
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -2403,7 +2403,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: 60
+  m_Spacing: 50
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
@@ -4354,6 +4354,8 @@ MonoBehaviour:
   creditsOverlay: {fileID: 990275308}
   cutsceneController: {fileID: 556093531}
   startSceneName: RoofTop_Street
+  displaySettingsController: {fileID: 1215944748}
+  backAction: {fileID: -1047288275666408772, guid: 1fd6d7089a041254aa9e192c8ef7ccb4, type: 3}
 --- !u!114 &556093531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4376,6 +4378,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 26892d68c33d6ed49b41d531d9da0056, type: 3}
   nextSceneName: RoofTop_Street
   fadeDuration: 0.25
+  autoAdvanceDelay: 3
   shakeDuration: 0.4
   shakeStrength: 20
   shakeScale: 1.04
@@ -4435,7 +4438,7 @@ MonoBehaviour:
   m_MinWidth: -1
   m_MinHeight: -1
   m_PreferredWidth: 1200
-  m_PreferredHeight: 60
+  m_PreferredHeight: 65
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -4457,7 +4460,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: 60
+  m_Spacing: 50
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
@@ -5003,8 +5006,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 360
-  m_PreferredHeight: 60
+  m_PreferredWidth: 220
+  m_PreferredHeight: 65
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -5028,7 +5031,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC774\uB984"
+  m_text: "\uBC31\uC11C\uC9C4"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c3702b67305f6e246be35b73de661d4b, type: 2}
   m_sharedMaterial: {fileID: -7548262398916953536, guid: c3702b67305f6e246be35b73de661d4b, type: 2}
@@ -5547,8 +5550,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 360
-  m_PreferredHeight: 60
+  m_PreferredWidth: 220
+  m_PreferredHeight: 65
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -5572,7 +5575,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC774\uB984"
+  m_text: "\uBC15\uC900\uD64D"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c3702b67305f6e246be35b73de661d4b, type: 2}
   m_sharedMaterial: {fileID: -7548262398916953536, guid: c3702b67305f6e246be35b73de661d4b, type: 2}
@@ -7851,7 +7854,7 @@ MonoBehaviour:
   m_MinWidth: -1
   m_MinHeight: -1
   m_PreferredWidth: 1200
-  m_PreferredHeight: 60
+  m_PreferredHeight: 65
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -7873,7 +7876,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: 60
+  m_Spacing: 50
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
@@ -8930,7 +8933,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC774\uB984"
+  m_text: "\uC2EC\uBBFC\uC131"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c3702b67305f6e246be35b73de661d4b, type: 2}
   m_sharedMaterial: {fileID: -7548262398916953536, guid: c3702b67305f6e246be35b73de661d4b, type: 2}
@@ -9025,8 +9028,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 360
-  m_PreferredHeight: 60
+  m_PreferredWidth: 220
+  m_PreferredHeight: 65
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -9086,7 +9089,7 @@ MonoBehaviour:
   m_MinWidth: -1
   m_MinHeight: -1
   m_PreferredWidth: 1200
-  m_PreferredHeight: 60
+  m_PreferredHeight: 65
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -9108,7 +9111,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: 60
+  m_Spacing: 50
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
@@ -9847,8 +9850,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 360
-  m_PreferredHeight: 60
+  m_PreferredWidth: 220
+  m_PreferredHeight: 65
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -9872,7 +9875,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC774\uB984"
+  m_text: "\uC784\uD6A8\uC900"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c3702b67305f6e246be35b73de661d4b, type: 2}
   m_sharedMaterial: {fileID: -7548262398916953536, guid: c3702b67305f6e246be35b73de661d4b, type: 2}
@@ -10005,8 +10008,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 360
-  m_PreferredHeight: 60
+  m_PreferredWidth: 700
+  m_PreferredHeight: 65
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -10030,7 +10033,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC774\uBA54\uC77C"
+  m_text: imhj1348@gmail.com
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c3702b67305f6e246be35b73de661d4b, type: 2}
   m_sharedMaterial: {fileID: -7548262398916953536, guid: c3702b67305f6e246be35b73de661d4b, type: 2}
@@ -12870,8 +12873,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 360
-  m_PreferredHeight: 60
+  m_PreferredWidth: 180
+  m_PreferredHeight: 65
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -12895,7 +12898,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAE30\uD68D"
+  m_text: "\uAC1C\uBC1C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c3702b67305f6e246be35b73de661d4b, type: 2}
   m_sharedMaterial: {fileID: -7548262398916953536, guid: c3702b67305f6e246be35b73de661d4b, type: 2}
@@ -13812,8 +13815,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 360
-  m_PreferredHeight: 60
+  m_PreferredWidth: 180
+  m_PreferredHeight: 65
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -13837,7 +13840,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAE30\uD68D"
+  m_text: "\uAC1C\uBC1C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c3702b67305f6e246be35b73de661d4b, type: 2}
   m_sharedMaterial: {fileID: -7548262398916953536, guid: c3702b67305f6e246be35b73de661d4b, type: 2}
@@ -14250,8 +14253,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 360
-  m_PreferredHeight: 60
+  m_PreferredWidth: 180
+  m_PreferredHeight: 65
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -14308,8 +14311,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 360
-  m_PreferredHeight: 60
+  m_PreferredWidth: 700
+  m_PreferredHeight: 65
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -14333,7 +14336,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC774\uBA54\uC77C"
+  m_text: smsworld99@gmail.com
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c3702b67305f6e246be35b73de661d4b, type: 2}
   m_sharedMaterial: {fileID: -7548262398916953536, guid: c3702b67305f6e246be35b73de661d4b, type: 2}
@@ -14466,8 +14469,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 360
-  m_PreferredHeight: 60
+  m_PreferredWidth: 180
+  m_PreferredHeight: 65
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -14491,7 +14494,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAE30\uD68D"
+  m_text: "\uC544\uD2B8"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c3702b67305f6e246be35b73de661d4b, type: 2}
   m_sharedMaterial: {fileID: -7548262398916953536, guid: c3702b67305f6e246be35b73de661d4b, type: 2}

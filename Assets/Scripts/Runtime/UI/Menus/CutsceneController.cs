@@ -18,6 +18,9 @@ public class CutsceneController : MonoBehaviour
     [Header("Transition")]
     [SerializeField, Min(0f)] private float fadeDuration = 0.25f;
 
+    [Header("Auto Advance")]
+    [SerializeField] private float autoAdvanceDelay = 3f;
+
     [Header("Second Cut Shake")]
     [SerializeField, Min(0f)] private float shakeDuration = 0.4f;
     [SerializeField, Min(0f)] private float shakeStrength = 20f;
@@ -26,6 +29,7 @@ public class CutsceneController : MonoBehaviour
     private int currentIndex;
     private bool isPlaying;
     private bool isTransitioning;
+    private float autoAdvanceTimer;
 
     private RectTransform imageRect;
     private Vector2 originalPosition;
@@ -40,17 +44,31 @@ public class CutsceneController : MonoBehaviour
         cutscenePanel.SetActive(false);
     }
 
-    private void Update()
-{
-    if (!isPlaying || isTransitioning) return;
+   private void Update()
+    {
+        if (!isPlaying || isTransitioning)
+            return;
 
-    bool mousePressed = Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame;
+        autoAdvanceTimer += Time.unscaledDeltaTime;
 
-    bool keyboardPressed = Keyboard.current != null && (Keyboard.current.spaceKey.wasPressedThisFrame || Keyboard.current.enterKey.wasPressedThisFrame);
+        bool mousePressed =
+            Mouse.current != null &&
+            Mouse.current.leftButton.wasPressedThisFrame;
 
-    if (mousePressed || keyboardPressed)
-        Advance();
-}
+        bool keyboardPressed =
+            Keyboard.current != null &&
+            (
+                Keyboard.current.spaceKey.wasPressedThisFrame ||
+                Keyboard.current.enterKey.wasPressedThisFrame
+            );
+
+        bool timeExpired =
+            autoAdvanceDelay > 0f &&
+            autoAdvanceTimer >= autoAdvanceDelay;
+
+        if (mousePressed || keyboardPressed || timeExpired)
+            Advance();
+    }
 
     public void Play()
     {
@@ -59,6 +77,7 @@ public class CutsceneController : MonoBehaviour
 
         isPlaying = true;
         currentIndex = 0;
+        autoAdvanceTimer = 0f;
 
         cutscenePanel.SetActive(true);
         StartCoroutine(ShowFirstCut());
@@ -68,7 +87,8 @@ public class CutsceneController : MonoBehaviour
     {
         if (!isPlaying || isTransitioning)
             return;
-
+        
+        autoAdvanceTimer = 0f;
         StartCoroutine(AdvanceRoutine());
     }
 
